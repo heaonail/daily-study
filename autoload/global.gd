@@ -24,9 +24,9 @@ const ODDS={
 }
 
 const SHOP_PANEL_ODDS={
-	"epic":{"start_wave":2,"base_multiple":0.06},
-	"rare":{"start_wave":4,"base_multiple":0.02},
-	"legendary":{"start_wave":8,"base_multiple":0.002}
+	"epic":{"start_wave":2,"base_multiple":0.1},
+	"rare":{"start_wave":4,"base_multiple":0.06},
+	"legendary":{"start_wave":8,"base_multiple":0.01}
 }
 
 var player:PlayerTemplate
