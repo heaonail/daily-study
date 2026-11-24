@@ -3275,14 +3275,14 @@ var collected:bool=false\par
 \par
 func _process(delta: float) -> void:\par
 \tab if collected and target_pos_screen==Vector2.INF:\par
-\cf7 collected\'ce\'aatrue\'a3\'ac\'d2\'e2\'ce\'b6\'d7\'c5player\'bd\'f8\'c8\'eb\'b7\'b6\'ce\'a7\'a3\'ac\'bf\'c9\'d2\'d4\'d5\'fd\'b3\'a3\'ca\'b0\'c8\'a1\'c1\'cb\cf3\par
+Vector2.INF\'ca\'c7\ldblquote\cf6\'bd\'e7\'c3\'e6\cf3\rdblquote\'c4\'bf\'b1\'ea\'d7\'f8\'b1\'ea\'a3\'ac\cf7\'b9\'c3\'c7\'d2\'c0\'ed\'bd\'e2\'ce\'aa\'d3\'ce\'cf\'b7\'bb\'ad\'c3\'e6\'ce\'de\'b9\'d8\'b5\'c4\'c6\'c1\'c4\'bb\'d7\'f3\'c9\'cf\'bd\'c7\'b0\'c9\'a3\'ac\'c4\'c7\'b8\'f6\'ce\'bb\'d6\'c3\'ca\'c7Vector2.ZERO,\'b5\'ab\'d2\'bb\'b0\'e3\'b2\'bb\'bb\'e1\'c9\'e8\'d6\'c3\'ce\'aaVector.ZERO\'a3\'ac\'b9\'fd\'b7\'d6\'be\'df\'cc\'e5\'b5\'c4\'ca\'fd\'d7\'d6\'bb\'e1\'b7\'a2\'c9\'fa\'b3\'e5\'cd\'bb\'a1\'a3\cf3\'d3\'c9\'d3\'da\'d5\'fd\'b3\'a3\'b5\'c4\'c6\'c1\'c4\'bb\'d7\'f8\'b1\'ea\'b2\'bb\'bf\'c9\'c4\'dc\'ca\'c7\'ce\'de\'c7\'ee\'b4\'f3\'a3\'ac\'bf\'aa\'b7\'a2\'d5\'df\'bf\'c9\'d2\'d4\'d4\'da\'c2\'df\'bc\'ad\'d6\'d0\'cd\'a8\'b9\'fd\'c5\'d0\'b6\'cf if target_pos_screen == Vector2.INF\'a3\'ac\'bf\'ec\'cb\'d9\'c5\'d0\'b6\'cf\'b5\'b1\'c7\'b0\'ca\'c7\'b7\'f1\'d3\'d0\'cb\'f8\'b6\'a8\'c4\'bf\'b1\'ea\'a3\'ac\cf7 collected\'ce\'aatrue\'a3\'a8coin\'ba\'cdplayer\'b7\'a2\'c9\'fa\'c5\'f6\'d7\'b2\'bc\'ec\'b2\'e2\'a3\'a9\'a3\'ac2\'cc\'f5\'bc\'fe\'b3\'c9\'c1\'a2\'a3\'a8\'bd\'e7\'c3\'e6\'d7\'f3\'b1\'dfINF\'a3\'a9\'a3\'ac\'c1\'a9\cf6\'cc\'f5\'bc\'fe\'cd\'ac\'ca\'b1\'b3\'c9\'c1\'a2\'a3\'ac\cf7\'d2\'e2\'ce\'b6\'d7\'c5player\'bd\'f8\'c8\'eb\'b7\'b6\'ce\'a7\'a3\'ac\'bf\'c9\'d2\'d4\'d5\'fd\'b3\'a3\'ca\'b0\'c8\'a1\'c1\'cb\cf3\par
 \tab\tab if is_instance_valid(Global.player):\par
 \tab\tab\tab target_pos=Global.player.global_position\par
 \cf7\'bd\'abcoin\'b7\'c9\'c8\'a5\'b5\'c4\'ce\'bb\'d6\'c3\'b6\'a8\'d2\'e5\'ce\'aaplayer\'ce\'bb\'d6\'c3\cf3\par
 \tab if target_pos_screen!=Vector2.INF:\tab\par
 \cf7\'a3\'a1=INF\'d2\'e2\'ce\'b6\'d7\'c5target_pos_screen\'b1\'bb\'d0\'de\'b8\'c4\'c1\'cb\'a3\'ac\'d2\'b2\'be\'cd\'ca\'c7coin\'d0\'e8\'d2\'aa\'b7\'c9\'b5\'bd\'d7\'f3\'c9\'cf\'bd\'c7coin.tscn\'ce\'bb\'d6\'c3\cf3\tab   \tab\tab target_pos=get_canvas_transform().affine_inverse()*target_pos_screen\par
 \cf7 get_canvas_transform()\'b7\'b5\'bb\'d8\'b5\'b1\'c7\'b0canvas\'b5\'c4transform\'a3\'ac\'b0\'fc\'c0\'a8position,rotation,scal,skew.\par
-affine_inverse()\'ca\'c7\'d2\'bb\'b8\'f6\'b7\'c2\'c9\'e4\'c4\'e6\'d7\'aa\'be\'d8\'d5\'f3\'ba\'af\'ca\'fd\'a3\'ac\'d7\'f7\'d3\'c3\'ca\'c7\'bd\'ab\'b5\'b1\'c7\'b0\'b5\'c4\'c6\'c1\'c4\'bb\'d7\'f8\'b1\'ea\'b7\'b4\'cf\'f2\'d7\'aa\'bb\'bb\'ce\'aaglobal_position.\par
+affine_inverse()\'ca\'c7\'d2\'bb\'b8\'f6\cf6\'b7\'c2\'c9\'e4\'c4\'e6\'d7\'aa\'be\'d8\'d5\'f3\'ba\'af\'ca\'fd\cf7\'a3\'ac\'d7\'f7\'d3\'c3\'ca\'c7\'bd\'ab\'b5\'b1\'c7\'b0\'b5\'c4\'c6\'c1\'c4\'bb\'d7\'f8\'b1\'ea\'b7\'b4\'cf\'f2\'d7\'aa\'bb\'bb\'ce\'aaglobal_position.\par
 \'c9\'cf\'c3\'e6\'d5\'e2\'d0\'d0\'b4\'fa\'c2\'eb\'b5\'c4\'d7\'f7\'d3\'c3\'be\'cd\'ca\'c7\'bd\'ab\'c6\'c1\'c4\'bb\'d7\'f3\'c9\'cf\'bd\'c7coin.tscn\'ce\'bb\'d6\'c3\'a3\'ac\'d7\'aa\'bb\'bb\'ce\'aaglobal_position\cf3\par
 \tab if target_pos!=Vector2.ZERO:\par
 \cf7\'a3\'a1=ZERO\'d2\'e2\'ce\'b6\'d7\'c5target_pos\'b1\'bb\'d0\'de\'b8\'c4\'ce\'aaplayer\'ce\'bb\'d6\'c3\'a3\'ac\'b5\'da\'d2\'bb\'b8\'f6if\'c9\'fa\'d0\'a7\'c1\'cb\'a1\'a3\cf3\par
