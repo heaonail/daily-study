@@ -3289,7 +3289,9 @@ affine_inverse()\'ca\'c7\'d2\'bb\'b8\'f6\cf6\'b7\'c2\'c9\'e4\'c4\'e6\'d7\'aa\'be
 \tab global_position=global_position.move_toward(target_pos,coin_speed*delta)\par
 \tab if global_position.distance_to(target_pos)<collect_distance:\par
 \tab\tab add_coin()\par
-\par
+\cf6\'c2\'df\'bc\'ad\'cb\'bc\'c2\'b7\'a3\'ba\cf3 collected and target_pos_screen==Vector2.INF\cf6\'b3\'c9\'c1\'a2\'ca\'b1\'a3\'ac\'ca\'b0\'c8\'a1\'bd\'f0\'b1\'d2\'a1\'a3\par
+\tab\cf3 target_pos_screen!=Vector2.INF\'a3\'ac\cf6\'b1\'ed\'ca\'be\'bd\'f0\'b1\'d2\'cd\'f9\'d7\'f3\'c9\'cf\'bd\'c7Vector2.ZERO\'b7\'c9\'c8\'a5\'a3\'ac\'bc\'b4target_pos=Vector2.ZERO\par
+\tab\cf3 target_pos!=Vector2.ZERO\cf6\'b2\'bb\'b5\'c8\'d3\'daVector2.ZERO\'c4\'c7\'b1\'d8\'c8\'bb\'ca\'c7\'b5\'c8\'d3\'daplayer\'d7\'f8\'b1\'ea\'a3\'ac\'b7\'c9\'cf\'f2player\'d7\'f8\'b1\'ea\'a1\'a3\cf3\par
 func add_coin()->void:\par
 \tab Global.coins+=value\par
 \tab queue_free()\par
