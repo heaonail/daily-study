@@ -3558,7 +3558,7 @@ func load_shop(current_wave:int)->void:\par
 \tab var selected_item:=Global.select_item_offer(shop_item,current_wave)\par
 \tab for i in 4:\par
 \tab\tab var instance:=SHOP_CARD_SCENE.instantiate() as ShopCard\par
-\tab\tab instance.item_purchased.connect(_on_item_purchased)\par
+\tab\tab instance.item_purchased.connect(\cf6 _on_item_purchased\cf3 )\par
 \tab\tab item_container.add_child(instance)\par
 \tab\tab instance.shop_item=selected_item[i]\par
 func _on_new_wave_button_pressed() -> void:\par
@@ -3581,6 +3581,7 @@ func creat_item_card()->ItemCard:\par
 \cf7\'ca\'b5\'c0\'fd\'bb\'af\'d2\'bb\'b8\'f6ItemCard\cf6\par
 func _item_card_selected(card:ItemCard)->void:\par
 \tab pass\par
+\'cb\'bc\'c2\'b7\'c0\'ed\'c7\'e5\'a3\'ba\'b5\'b1shoppanel\'d6\'d0\'b5\'c4itemcontainer\'d6\'d0\'b5\'c4\'c4\'b3\'b8\'f6shopcard\'b1\'bb\'b5\'e3\'bb\'f7\'ca\'b1\'a3\'ac\'b7\'a2\'b3\'f6item_purchased\'a3\'ac\'d5\'e2\'ca\'c7\'cb\'fc\'b5\'c4\'c0\'e0\'d7\'d4\'b6\'a8\'d2\'e5\'b5\'c4\'d0\'c5\'ba\'c5\'a1\'a3\'d3\'c9shoppanel\'c0\'e0\'b5\'c4_on_item_purchased()\'ba\'af\'ca\'fd\'b4\'a6\'c0\'ed\'b8\'c3\'d0\'c5\'ba\'c5\'a3\'ac\'b5\'f7\'d3\'c3creat_item_card()->ItemCard\'ba\'af\'ca\'fd\'ca\'b5\'c0\'fd\'bb\'af\'d2\'bb\'b8\'f6ItemCard\'a3\'ac\'c8\'e7\'b9\'fb\'ca\'c7WEAPON\'c0\'e0\'d0\'cd\'b5\'c4\'a3\'ac\'c4\'c7\'c3\'b4\'be\'cd\'d7\'b0\'b1\'b8\'ce\'e4\'c6\'f7player.equip_weapon()\'cd\'ac\'ca\'b1\'bc\'d3\'c8\'eb\'b5\'bdequiped_weapon\'ca\'fd\'d7\'e9\'d6\'d0\'a3\'ac\'d2\'f2\'ce\'aa\'d2\'bb\'b9\'b2\'d6\'bb\'c4\'dc6\'b0\'c9\'ce\'e4\'c6\'f7\'a3\'ac\'d5\'e2\'b8\'f6\'ca\'fd\'d7\'e9\'d3\'c3\'d3\'da\'c5\'d0\'b6\'cf\'b5\'c4\'a1\'a3\par
 \cf5\highlight2\'ca\'b5\'cf\'d6\'ce\'e4\'c6\'f7\'b5\'c4\'ba\'cf\'b3\'c9\'b9\'a6\'c4\'dc\'a3\'acglobal.gd\'d6\'d0\'cc\'ed\'bc\'d3\'d2\'bb\'b8\'f6\'d0\'c2var selected_weapon:ItemWeapon\'a3\'ac\'b5\'b1ItemCard\'b1\'bb\'b0\'b4\'cf\'c2\'ca\'b1\'a3\'ac\'d3\'c3\'b4\'e6\'b4\'a2\'b5\'b1\'c7\'b0ItemCard\'b5\'c4\'d0\'c5\'cf\'a2\'a3\'ac\'cd\'ac\'ca\'b1\'b8\'fc\'d0\'c2\'d2\'bb\'cf\'c2global\'ba\'cditemcard\'d6\'d0\'b5\'c4\'c4\'da\'c8\'dd\'a3\'ba\par
 \cf3\highlight0 extends Node\par
 signal block_text(unit:Unit)\par
