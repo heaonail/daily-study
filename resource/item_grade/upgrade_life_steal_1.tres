@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ItemUpgrade" format=3 uid="uid://cupra7g4nmyq2"]
+
+[ext_resource type="Texture2D" uid="uid://dnsc2iagvcl5t" path="res://studyasset/weapon/Bone.png" id="1_iy4pv"]
+[ext_resource type="Script" uid="uid://c8e7vfwo3l5xv" path="res://resource/item_grade/item_upgrade.gd" id="2_i4mff"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8m6p"]
+atlas = ExtResource("1_iy4pv")
+region = Rect2(96, 24, 16, 40)
+
+[resource]
+script = ExtResource("2_i4mff")
+value = 1.0
+description = "1%"
+unit_stats_name = "life_steal"
+item_name = "life_steal"
+item_icon = SubResource("AtlasTexture_l8m6p")
+item_type = 1
+item_cost = 8
+metadata/_custom_type_script = "uid://c8e7vfwo3l5xv"

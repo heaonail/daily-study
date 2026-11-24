@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="ItemWeapon" format=3 uid="uid://i025k873lnd7"]
+
+[ext_resource type="Texture2D" uid="uid://dnsc2iagvcl5t" path="res://studyasset/weapon/Bone.png" id="1_n7oo4"]
+[ext_resource type="PackedScene" uid="uid://dfqyblsffa4lb" path="res://weapon_scene/weapon_shield.tscn" id="2_t5774"]
+[ext_resource type="Script" uid="uid://c812dy81mhtiw" path="res://resource/item_weapon/item_weapon.gd" id="3_qxnud"]
+[ext_resource type="Resource" uid="uid://te6pak5g71mv" path="res://resource/item_weapon/melee/shield/shield_stats_2.tres" id="4_t5774"]
+[ext_resource type="Resource" uid="uid://cskr5whvkgoc3" path="res://resource/item_weapon/melee/shield/shield_3.tres" id="5_qxnud"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wiygk"]
+atlas = ExtResource("1_n7oo4")
+region = Rect2(145, 0, 14, 16)
+
+[resource]
+script = ExtResource("3_qxnud")
+scene = ExtResource("2_t5774")
+stats = ExtResource("4_t5774")
+upgrade_to = ExtResource("5_qxnud")
+item_name = "shield2"
+item_icon = SubResource("AtlasTexture_wiygk")
+item_tier = 1
+item_cost = 16
+metadata/_custom_type_script = "uid://c812dy81mhtiw"

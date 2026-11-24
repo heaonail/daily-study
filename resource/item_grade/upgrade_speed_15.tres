@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ItemUpgrade" format=3 uid="uid://b6bis6dvawxsu"]
+
+[ext_resource type="Texture2D" uid="uid://dnsc2iagvcl5t" path="res://studyasset/weapon/Bone.png" id="1_0kjd2"]
+[ext_resource type="Script" uid="uid://c8e7vfwo3l5xv" path="res://resource/item_grade/item_upgrade.gd" id="2_2aqf6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8m6p"]
+atlas = ExtResource("1_0kjd2")
+region = Rect2(64, 48, 16, 32)
+
+[resource]
+script = ExtResource("2_2aqf6")
+value = 15.0
+description = "+15"
+unit_stats_name = "speed"
+item_name = "speed"
+item_icon = SubResource("AtlasTexture_l8m6p")
+item_tier = 2
+item_type = 1
+item_cost = 32
+metadata/_custom_type_script = "uid://c8e7vfwo3l5xv"

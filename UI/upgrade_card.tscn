@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://yn676bbjsj2g"]
+
+[ext_resource type="Script" uid="uid://fjjbijrjk17o" path="res://UI/upgrade_card.gd" id="1_frmbi"]
+[ext_resource type="StyleBox" uid="uid://uq7mm7ahp4uj" path="res://UI/common_style.tres" id="1_lqnor"]
+[ext_resource type="Texture2D" uid="uid://dnsc2iagvcl5t" path="res://studyasset/weapon/Bone.png" id="2_k3svc"]
+[ext_resource type="PackedScene" uid="uid://c7hj148io16am" path="res://UI/custom_button.tscn" id="4_l3rap"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqnor"]
+atlas = ExtResource("2_k3svc")
+region = Rect2(81, 2, 26, 12)
+
+[sub_resource type="LabelSettings" id="LabelSettings_l3rap"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xgyfv"]
+font_color = Color(0.92941177, 1, 0.2784314, 1)
+
+[node name="UpgradeCard" type="Panel" unique_id=481641215]
+custom_minimum_size = Vector2(120, 110)
+offset_right = 120.0
+offset_bottom = 100.0
+theme_override_styles/panel = ExtResource("1_lqnor")
+script = ExtResource("1_frmbi")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2104656233]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Control" type="Control" parent="MarginContainer" unique_id=1294947668]
+layout_mode = 2
+
+[node name="ItemIcon" type="TextureRect" parent="MarginContainer/Control" unique_id=824106979]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.0
+offset_right = 70.0
+offset_bottom = 15.0
+grow_vertical = 2
+texture = SubResource("AtlasTexture_lqnor")
+expand_mode = 1
+
+[node name="ItemName" type="Label" parent="MarginContainer/Control" unique_id=927440661]
+layout_mode = 1
+offset_right = 69.0
+offset_bottom = 23.0
+text = "DAMAGE"
+label_settings = SubResource("LabelSettings_l3rap")
+horizontal_alignment = 1
+
+[node name="ItemDescription" type="Label" parent="MarginContainer/Control" unique_id=1870979339]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -19.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "+1"
+label_settings = SubResource("LabelSettings_xgyfv")
+
+[node name="CustomButton" parent="MarginContainer/Control" unique_id=793445062 instance=ExtResource("4_l3rap")]
+layout_mode = 1
+offset_left = -40.0
+offset_top = -32.0
+offset_right = 40.0
+theme_override_font_sizes/font_size = 16
+
+[connection signal="pressed" from="MarginContainer/Control/CustomButton" to="." method="_on_custom_button_pressed"]

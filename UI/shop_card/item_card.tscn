@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://n5ehc4t0sbsh"]
+
+[ext_resource type="Script" uid="uid://cslw4vtjh8d30" path="res://UI/shop_card/item_card.gd" id="1_y07g8"]
+
+[node name="ItemCard" type="Button" unique_id=858513868]
+custom_minimum_size = Vector2(50, 50)
+script = ExtResource("1_y07g8")
+
+[node name="ItemIcon" type="TextureRect" parent="." unique_id=149925938]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

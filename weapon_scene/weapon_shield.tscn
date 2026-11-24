@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dfqyblsffa4lb"]
+
+[ext_resource type="PackedScene" uid="uid://dpoa4jux8yacn" path="res://weapon_scene/weapon_scene.tscn" id="1_wnwlp"]
+[ext_resource type="Texture2D" uid="uid://dnsc2iagvcl5t" path="res://studyasset/weapon/Bone.png" id="2_4dgqp"]
+[ext_resource type="PackedScene" uid="uid://ck0t7iyl41xiy" path="res://component/hitbox.tscn" id="3_4dgqp"]
+[ext_resource type="Script" uid="uid://qax6hijrslkn" path="res://weapon_scene/weapon_melee_behavior.gd" id="4_7yuk8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7yuk8"]
+atlas = ExtResource("2_4dgqp")
+region = Rect2(145, 0, 14, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7yuk8"]
+size = Vector2(14, 15)
+
+[node name="WeaponShield" unique_id=584496146 instance=ExtResource("1_wnwlp")]
+
+[node name="Sprite" parent="." index="0" unique_id=39539228]
+texture = SubResource("AtlasTexture_7yuk8")
+
+[node name="Hitbox" parent="Sprite" index="0" unique_id=1880098017 instance=ExtResource("3_4dgqp")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Hitbox" index="0" unique_id=616098097]
+shape = SubResource("RectangleShape2D_7yuk8")
+
+[node name="WeaponBehavior" parent="." index="3" unique_id=1473201648 node_paths=PackedStringArray("hitbox", "weapon")]
+script = ExtResource("4_7yuk8")
+hitbox = NodePath("../Sprite/Hitbox")
+weapon = NodePath("..")

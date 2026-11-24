@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="WeaponStats" format=3 uid="uid://bvoj65ap8xf42"]
+
+[ext_resource type="Script" uid="uid://cspyuhasfos4" path="res://resource/weapon_stats.gd" id="1_umj6h"]
+
+[resource]
+script = ExtResource("1_umj6h")
+cooldown = 1.0
+knock_back = 4
+recoil_duration = 0.30000000000000004
+attack_duration = 0.2
+back_duration = 0.2
+metadata/_custom_type_script = "uid://cspyuhasfos4"

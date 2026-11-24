@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UnitStats" format=3 uid="uid://dqotjk721f8nf"]
+
+[ext_resource type="Script" uid="uid://cgbqulmoyenex" path="res://resource/unit_stats.gd" id="1_rjvtp"]
+[ext_resource type="Texture2D" uid="uid://dnmamix2l3rcn" path="res://studyasset/unit/enemy/skeleton/rogue/Idle-Sheet.png" id="1_xp6m3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4ctl"]
+atlas = ExtResource("1_xp6m3")
+region = Rect2(4, 0, 20, 32)
+
+[resource]
+script = ExtResource("1_rjvtp")
+name = "Four"
+type = 1
+icon = SubResource("AtlasTexture_m4ctl")
+metadata/_custom_type_script = "uid://cgbqulmoyenex"

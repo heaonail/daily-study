@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://m1y4hxuqdeum"]
+
+[ext_resource type="PackedScene" uid="uid://dpoa4jux8yacn" path="res://weapon_scene/weapon_scene.tscn" id="1_eoht2"]
+[ext_resource type="Texture2D" uid="uid://dnsc2iagvcl5t" path="res://studyasset/weapon/Bone.png" id="2_fykfc"]
+[ext_resource type="Script" uid="uid://bxr6neji4koil" path="res://weapon_scene/weapon_range_behavior.gd" id="2_l6qap"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hivjr"]
+atlas = ExtResource("2_fykfc")
+region = Rect2(81, 2, 26, 12)
+
+[node name="WeaponRange" unique_id=584496146 instance=ExtResource("1_eoht2")]
+
+[node name="Sprite" parent="." index="0" unique_id=39539228]
+texture = SubResource("AtlasTexture_hivjr")
+
+[node name="Muzzle" type="Marker2D" parent="Sprite" index="0" unique_id=108432117]
+position = Vector2(14, 0)
+
+[node name="WeaponBehavior" parent="." index="3" unique_id=1473201648 node_paths=PackedStringArray("weapon")]
+script = ExtResource("2_l6qap")
+weapon = NodePath("..")

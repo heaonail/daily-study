@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://d0r4jnxpspupa"]
+
+[ext_resource type="Script" uid="uid://dl5v234844sw1" path="res://unit/unit.gd" id="1_hy15m"]
+[ext_resource type="PackedScene" uid="uid://ck0t7iyl41xiy" path="res://component/hitbox.tscn" id="2_3k25b"]
+[ext_resource type="PackedScene" uid="uid://de67vt7e3yqom" path="res://component/hurtbox.tscn" id="3_hs7ws"]
+[ext_resource type="PackedScene" uid="uid://jtxgqi4u0qj7" path="res://component/health.tscn" id="4_japly"]
+[ext_resource type="PackedScene" uid="uid://byypve1s65ktq" path="res://UI/health_bar.tscn" id="5_s1ym6"]
+
+[node name="Unit" type="CharacterBody2D" unique_id=770819118]
+script = ExtResource("1_hy15m")
+
+[node name="Animate" type="AnimatedSprite2D" parent="." unique_id=556608151]
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=795010846]
+
+[node name="Hitbox" parent="." unique_id=1880098017 instance=ExtResource("2_3k25b")]
+
+[node name="Hurtbox" parent="." unique_id=1529533834 instance=ExtResource("3_hs7ws")]
+
+[node name="Health" parent="." unique_id=2054700039 instance=ExtResource("4_japly")]
+
+[node name="HealthBar" parent="." unique_id=1226607299 instance=ExtResource("5_s1ym6")]
+
+[node name="FlashTimer" type="Timer" parent="." unique_id=782045767]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="get_hit" from="Hurtbox" to="." method="_on_hurtbox_get_hit"]
+[connection signal="health_change" from="Health" to="HealthBar" method="_on_health_health_change"]
+[connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]

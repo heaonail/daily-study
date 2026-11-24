@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://lyek4c07nb7t"]
+
+[ext_resource type="PackedScene" uid="uid://dflvswwn0ku8v" path="res://resource/item_weapon/range/projectile.tscn" id="1_vd2fo"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vd2fo"]
+load_path = "res://.godot/imported/Bullet 24x24 Free Part 4A.png-0c264fcac19c134dbfd6011483aac5e4.ctex"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v8xoa"]
+radius = 12.0
+
+[node name="ProjectileEnemy" unique_id=921170079 instance=ExtResource("1_vd2fo")]
+position = Vector2(0, 0)
+
+[node name="Sprite" parent="." index="0" unique_id=1380329731]
+texture = SubResource("CompressedTexture2D_vd2fo")
+region_rect = Rect2(2, 337, 20, 22)
+
+[node name="Hitbox" parent="Sprite" index="0" unique_id=1880098017]
+collision_layer = 32
+collision_mask = 16
+
+[node name="Collision" parent="Sprite/Hitbox" index="0" unique_id=2024799245]
+shape = SubResource("CircleShape2D_v8xoa")

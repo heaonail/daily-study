@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UnitStats" format=3 uid="uid://cvi20t64oalvy"]
+
+[ext_resource type="Texture2D" uid="uid://ys6paa6l0k1i" path="res://studyasset/unit/enemy/skeleton/base/Idle-Sheet.png" id="1_4yopt"]
+[ext_resource type="Script" uid="uid://cgbqulmoyenex" path="res://resource/unit_stats.gd" id="1_f68as"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8pe54"]
+atlas = ExtResource("1_4yopt")
+region = Rect2(6, 2, 16, 30)
+
+[resource]
+script = ExtResource("1_f68as")
+name = "Template"
+type = 1
+icon = SubResource("AtlasTexture_8pe54")
+health = 100
+damage = 5
+metadata/_custom_type_script = "uid://cgbqulmoyenex"

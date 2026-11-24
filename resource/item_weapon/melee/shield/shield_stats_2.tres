@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="WeaponStats" format=3 uid="uid://te6pak5g71mv"]
+
+[ext_resource type="Script" uid="uid://cspyuhasfos4" path="res://resource/weapon_stats.gd" id="1_tt2wo"]
+
+[resource]
+script = ExtResource("1_tt2wo")
+metadata/_custom_type_script = "uid://cspyuhasfos4"

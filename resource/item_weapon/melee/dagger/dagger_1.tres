@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ItemWeapon" format=3 uid="uid://ojova7xjauvd"]
+
+[ext_resource type="Texture2D" uid="uid://dnsc2iagvcl5t" path="res://studyasset/weapon/Bone.png" id="1_th8ix"]
+[ext_resource type="PackedScene" uid="uid://2fptd12x6u2t" path="res://weapon_scene/weapon_dagger.tscn" id="2_7pow7"]
+[ext_resource type="Script" uid="uid://c812dy81mhtiw" path="res://resource/item_weapon/item_weapon.gd" id="3_3i7ll"]
+[ext_resource type="Resource" uid="uid://bvoj65ap8xf42" path="res://resource/item_weapon/melee/dagger/dagger_stats_1.tres" id="4_c1l4d"]
+[ext_resource type="Resource" uid="uid://dce6sxivstqmh" path="res://resource/item_weapon/melee/dagger/dagger_2.tres" id="5_th8ix"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10rko"]
+atlas = ExtResource("1_th8ix")
+region = Rect2(34, 14, 12, 32)
+
+[resource]
+script = ExtResource("3_3i7ll")
+scene = ExtResource("2_7pow7")
+stats = ExtResource("4_c1l4d")
+upgrade_to = ExtResource("5_th8ix")
+item_name = "Dagger1"
+item_icon = SubResource("AtlasTexture_10rko")
+item_cost = 8
+metadata/_custom_type_script = "uid://c812dy81mhtiw"

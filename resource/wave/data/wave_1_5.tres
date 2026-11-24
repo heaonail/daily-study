@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="WaveData" format=3 uid="uid://dnv1cvy8jfgww"]
+
+[ext_resource type="Script" uid="uid://veaut7n3q6s0" path="res://resource/wave/wave_data.gd" id="1_qc50q"]
+[ext_resource type="Script" uid="uid://baudxx58i4alj" path="res://resource/wave/wave_unit_data.gd" id="2_5b04p"]
+[ext_resource type="PackedScene" uid="uid://cojrx5k7l7r48" path="res://unit/enemy/enemy_shooter.tscn" id="3_qmp8s"]
+[ext_resource type="PackedScene" uid="uid://co6c8kwaeo6j" path="res://unit/enemy_template.tscn" id="4_kjewv"]
+[ext_resource type="PackedScene" uid="uid://dos1f3a5c2fyf" path="res://unit/enemy/enemy_charge.tscn" id="5_28k84"]
+
+[sub_resource type="Resource" id="Resource_hytpa"]
+script = ExtResource("2_5b04p")
+unit_scene = ExtResource("3_qmp8s")
+weight = 3.0
+metadata/_custom_type_script = "uid://baudxx58i4alj"
+
+[sub_resource type="Resource" id="Resource_ulkhl"]
+script = ExtResource("2_5b04p")
+unit_scene = ExtResource("4_kjewv")
+weight = 6.0
+metadata/_custom_type_script = "uid://baudxx58i4alj"
+
+[sub_resource type="Resource" id="Resource_c4aj6"]
+script = ExtResource("2_5b04p")
+unit_scene = ExtResource("5_28k84")
+weight = 1.0
+metadata/_custom_type_script = "uid://baudxx58i4alj"
+
+[resource]
+script = ExtResource("1_qc50q")
+from = 1
+to = 5
+units = Array[ExtResource("2_5b04p")]([SubResource("Resource_hytpa"), SubResource("Resource_ulkhl"), SubResource("Resource_c4aj6")])
+metadata/_custom_type_script = "uid://veaut7n3q6s0"

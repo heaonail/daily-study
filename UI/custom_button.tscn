@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://c7hj148io16am"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4jedf"]
+bg_color = Color(0.4700758, 0.47007585, 0.47007567, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_okbdy"]
+bg_color = Color(0.23752978, 0.3115237, 0.912058, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vwuk"]
+bg_color = Color(0.19415817, 0.51045406, 0.5105165, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="CustomButton" type="Button" unique_id=793445062]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -31.5
+offset_top = -31.0
+offset_right = 31.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_4jedf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_okbdy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0vwuk")
+text = "SELECT"

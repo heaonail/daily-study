@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UnitStats" format=3 uid="uid://bm05srk7onxlv"]
+
+[ext_resource type="Texture2D" uid="uid://bq8iamsokio6g" path="res://studyasset/unit/npc/wizzard/Idle-Sheet.png" id="1_vaqx7"]
+[ext_resource type="Script" uid="uid://cgbqulmoyenex" path="res://resource/unit_stats.gd" id="2_jsfom"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7bwy"]
+atlas = ExtResource("1_vaqx7")
+region = Rect2(4, 0, 25, 32)
+
+[resource]
+script = ExtResource("2_jsfom")
+name = "Three"
+icon = SubResource("AtlasTexture_e7bwy")
+metadata/_custom_type_script = "uid://cgbqulmoyenex"

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cojrx5k7l7r48"]
+
+[ext_resource type="PackedScene" uid="uid://co6c8kwaeo6j" path="res://unit/enemy_template.tscn" id="1_4euxy"]
+[ext_resource type="Resource" uid="uid://xr2juur7v044" path="res://resource/enemy/enemy_second.tres" id="2_syme5"]
+[ext_resource type="Script" uid="uid://b4uig5ciy2lf7" path="res://unit/enemy/shooter_behavior.gd" id="3_8c5oi"]
+[ext_resource type="PackedScene" uid="uid://lyek4c07nb7t" path="res://resource/item_weapon/range/projectile_enemy.tscn" id="4_syme5"]
+
+[node name="EnemyShooter" unique_id=770819118 instance=ExtResource("1_4euxy")]
+stats = ExtResource("2_syme5")
+
+[node name="ShooterBehavior" type="Node2D" parent="." index="9" unique_id=121302750 node_paths=PackedStringArray("entity", "fire_pos")]
+script = ExtResource("3_8c5oi")
+entity = NodePath("..")
+fire_pos = NodePath("../FirePos")
+projectile_count = 2
+projectile_scene = ExtResource("4_syme5")
+
+[node name="FirePos" type="Marker2D" parent="." index="10" unique_id=671507630]
+position = Vector2(8, -8)

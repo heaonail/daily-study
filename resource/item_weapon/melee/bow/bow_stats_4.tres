@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WeaponStats" format=3 uid="uid://c7swqydr5irm4"]
+
+[ext_resource type="PackedScene" uid="uid://dflvswwn0ku8v" path="res://resource/item_weapon/range/projectile.tscn" id="1_03knj"]
+[ext_resource type="Script" uid="uid://cspyuhasfos4" path="res://resource/weapon_stats.gd" id="1_rljsp"]
+
+[resource]
+script = ExtResource("1_rljsp")
+damage = 4
+max_range = 256
+projectile_scene = ExtResource("1_03knj")
+metadata/_custom_type_script = "uid://cspyuhasfos4"

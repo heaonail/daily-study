@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="UnitStats" format=3 uid="uid://bjr58a3b67c0e"]
+
+[ext_resource type="Script" uid="uid://cgbqulmoyenex" path="res://resource/unit_stats.gd" id="1_1tae8"]
+[ext_resource type="Texture2D" uid="uid://cn6kdt712p27q" path="res://studyasset/unit/AnimationSheet_Character.png" id="1_ih3dx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_guthr"]
+atlas = ExtResource("1_ih3dx")
+region = Rect2(7, 4, 16, 28)
+
+[resource]
+script = ExtResource("1_1tae8")
+name = "Template"
+icon = SubResource("AtlasTexture_guthr")
+health = 5
+speed = 200
+gold_drop = 0
+hp_regen = 1
+metadata/_custom_type_script = "uid://cgbqulmoyenex"

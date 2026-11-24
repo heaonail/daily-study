@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="ItemWeapon" format=3 uid="uid://doy74j37f5px7"]
+
+[ext_resource type="Texture2D" uid="uid://dnsc2iagvcl5t" path="res://studyasset/weapon/Bone.png" id="1_tc15v"]
+[ext_resource type="PackedScene" uid="uid://m1y4hxuqdeum" path="res://weapon_scene/weapon_range.tscn" id="2_wy8qp"]
+[ext_resource type="Script" uid="uid://c812dy81mhtiw" path="res://resource/item_weapon/item_weapon.gd" id="3_k3osg"]
+[ext_resource type="Resource" uid="uid://dsgwi137ug17e" path="res://resource/item_weapon/range/wand/wand_stats_3.tres" id="4_wy8qp"]
+[ext_resource type="Resource" uid="uid://c0sb3wpr2mwan" path="res://resource/item_weapon/range/wand/wand_4.tres" id="5_k3osg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bd6jf"]
+atlas = ExtResource("1_tc15v")
+region = Rect2(81, 2, 26, 12)
+
+[resource]
+script = ExtResource("3_k3osg")
+weapon_type = 1
+scene = ExtResource("2_wy8qp")
+stats = ExtResource("4_wy8qp")
+upgrade_to = ExtResource("5_k3osg")
+item_name = "Wand3"
+item_icon = SubResource("AtlasTexture_bd6jf")
+item_tier = 2
+item_cost = 32
+metadata/_custom_type_script = "uid://c812dy81mhtiw"

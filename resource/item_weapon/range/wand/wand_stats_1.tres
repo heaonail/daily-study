@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="WeaponStats" format=3 uid="uid://bffq4ipi8v5tl"]
+
+[ext_resource type="PackedScene" uid="uid://dflvswwn0ku8v" path="res://resource/item_weapon/range/projectile.tscn" id="1_vgnx4"]
+[ext_resource type="Script" uid="uid://cspyuhasfos4" path="res://resource/weapon_stats.gd" id="1_yb6m1"]
+
+[resource]
+script = ExtResource("1_yb6m1")
+cooldown = 1.0
+max_range = 256
+knock_back = 2
+projectile_scene = ExtResource("1_vgnx4")
+projectile_speed = 500
+metadata/_custom_type_script = "uid://cspyuhasfos4"

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dw27cyidbd6kp"]
+
+[ext_resource type="PackedScene" uid="uid://co6c8kwaeo6j" path="res://unit/enemy_template.tscn" id="1_jljrg"]
+[ext_resource type="Resource" uid="uid://clyygqshop2gu" path="res://resource/enemy/enemy_three.tres" id="2_1hstn"]
+
+[node name="EnemyThree" unique_id=770819118 instance=ExtResource("1_jljrg")]
+stats = ExtResource("2_1hstn")

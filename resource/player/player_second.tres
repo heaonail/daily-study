@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UnitStats" format=3 uid="uid://d1pxjs67cfkb3"]
+
+[ext_resource type="Texture2D" uid="uid://bffgjbai5cjyb" path="res://studyasset/unit/npc/rogue/Idle-Sheet.png" id="1_6r3fp"]
+[ext_resource type="Script" uid="uid://cgbqulmoyenex" path="res://resource/unit_stats.gd" id="2_t65yj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t65yj"]
+atlas = ExtResource("1_6r3fp")
+region = Rect2(7, 2, 19, 30)
+
+[resource]
+script = ExtResource("2_t65yj")
+name = "Second"
+icon = SubResource("AtlasTexture_t65yj")
+metadata/_custom_type_script = "uid://cgbqulmoyenex"

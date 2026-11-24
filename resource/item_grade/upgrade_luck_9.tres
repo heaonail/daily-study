@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ItemUpgrade" format=3 uid="uid://w15s4se6ewva"]
+
+[ext_resource type="Texture2D" uid="uid://dnsc2iagvcl5t" path="res://studyasset/weapon/Bone.png" id="1_j26et"]
+[ext_resource type="Script" uid="uid://c8e7vfwo3l5xv" path="res://resource/item_grade/item_upgrade.gd" id="2_eqbcd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8m6p"]
+atlas = ExtResource("1_j26et")
+region = Rect2(80, 0, 24, 16)
+
+[resource]
+script = ExtResource("2_eqbcd")
+value = 9.0
+description = "+9"
+unit_stats_name = "luck"
+item_name = "luck"
+item_icon = SubResource("AtlasTexture_l8m6p")
+item_tier = 2
+item_type = 1
+item_cost = 32
+metadata/_custom_type_script = "uid://c8e7vfwo3l5xv"

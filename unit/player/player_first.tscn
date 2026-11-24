@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://g4nrue7frktm"]
+
+[ext_resource type="PackedScene" uid="uid://da6nfquoucql3" path="res://unit/player_template.tscn" id="1_1vwk0"]
+[ext_resource type="Resource" uid="uid://dsnb3ke3gvyuv" path="res://resource/player/player_first.tres" id="2_d74qd"]
+
+[node name="PlayerFirst" unique_id=770819118 instance=ExtResource("1_1vwk0")]
+stats = ExtResource("2_d74qd")

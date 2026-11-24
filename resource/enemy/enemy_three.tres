@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UnitStats" format=3 uid="uid://clyygqshop2gu"]
+
+[ext_resource type="Script" uid="uid://cgbqulmoyenex" path="res://resource/unit_stats.gd" id="1_mgj7a"]
+[ext_resource type="Texture2D" uid="uid://ccnu3ve1u4wqo" path="res://studyasset/unit/enemy/orc/base/Idle-Sheet.png" id="1_ompk7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4vcw"]
+atlas = ExtResource("1_ompk7")
+region = Rect2(5, 2, 20, 30)
+
+[resource]
+script = ExtResource("1_mgj7a")
+name = "Three"
+type = 1
+icon = SubResource("AtlasTexture_h4vcw")
+metadata/_custom_type_script = "uid://cgbqulmoyenex"

@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dflvswwn0ku8v"]
+
+[ext_resource type="Script" uid="uid://slh3nul10noj" path="res://resource/item_weapon/range/projectile.gd" id="1_cu0pc"]
+[ext_resource type="PackedScene" uid="uid://ck0t7iyl41xiy" path="res://component/hitbox.tscn" id="1_ta00i"]
+[ext_resource type="Texture2D" uid="uid://cner0r7m15rwf" path="res://studyasset/projectile/Bullet 24x24 Free Part 4A.png" id="2_14tvy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nbv7l"]
+radius = 8.0
+
+[node name="Projectile" type="Node2D" unique_id=921170079]
+position = Vector2(266, 110)
+script = ExtResource("1_cu0pc")
+metadata/_edit_group_ = true
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1380329731]
+texture = ExtResource("2_14tvy")
+region_enabled = true
+region_rect = Rect2(292, 196, 16, 16)
+
+[node name="Hitbox" parent="Sprite" unique_id=1880098017 instance=ExtResource("1_ta00i")]
+collision_layer = 8
+collision_mask = 64
+
+[node name="Collision" type="CollisionShape2D" parent="Sprite/Hitbox" unique_id=2024799245]
+shape = SubResource("CircleShape2D_nbv7l")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1157130015]
+
+[connection signal="hit" from="Sprite/Hitbox" to="." method="_on_hitbox_hit"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

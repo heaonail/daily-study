@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://oidwksij4i1s"]
+
+[ext_resource type="Script" uid="uid://c1igijv20jh82" path="res://UI/shop_card/shop_card.gd" id="1_fl24t"]
+[ext_resource type="PackedScene" uid="uid://c7hj148io16am" path="res://UI/custom_button.tscn" id="2_n027r"]
+[ext_resource type="Texture2D" uid="uid://cufgmuuosegnu" path="res://studyasset/money/coin1.png" id="3_kuyga"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ui8ui"]
+bg_color = Color(0.4351923, 0.43519226, 0.43519226, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.5689727, 0.5689728, 0.5689725, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_16580"]
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_8t07b"]
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_fte6k"]
+font_size = 8
+
+[node name="ShopCard" type="Panel" unique_id=2046031525]
+custom_minimum_size = Vector2(120, 110)
+offset_right = 120.0
+offset_bottom = 110.0
+script = ExtResource("1_fl24t")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2037060125]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Control" type="Control" parent="MarginContainer" unique_id=388283268]
+layout_mode = 2
+
+[node name="PanelBG" type="Panel" parent="MarginContainer/Control" unique_id=782887817]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ui8ui")
+
+[node name="ItemIcon" type="TextureRect" parent="MarginContainer/Control" unique_id=1023307650]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 50.0
+expand_mode = 1
+
+[node name="ItemName" type="Label" parent="MarginContainer/Control" unique_id=126431442]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 65.0
+offset_top = 4.0
+offset_right = 107.0
+offset_bottom = 16.0
+text = "ItemName"
+label_settings = SubResource("LabelSettings_16580")
+
+[node name="ItemType" type="Label" parent="MarginContainer/Control" unique_id=1153889505]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 65.0
+offset_top = 18.0
+offset_right = 107.0
+offset_bottom = 30.0
+text = "ItemType"
+label_settings = SubResource("LabelSettings_8t07b")
+
+[node name="ItemDescription" type="RichTextLabel" parent="MarginContainer/Control" unique_id=1696514348]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 52.0
+offset_right = 112.0
+offset_bottom = 84.0
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+theme_override_font_sizes/bold_italics_font_size = 8
+theme_override_font_sizes/italics_font_size = 8
+theme_override_font_sizes/mono_font_size = 8
+bbcode_enabled = true
+text = "itemdescription"
+
+[node name="BuyButton" parent="MarginContainer/Control" unique_id=793445062 instance=ExtResource("2_n027r")]
+custom_minimum_size = Vector2(80, 16)
+layout_mode = 1
+offset_left = -40.0
+offset_top = -16.0
+offset_right = 40.0
+theme_override_font_sizes/font_size = 8
+text = ""
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Control/BuyButton" unique_id=1641522906]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="CoinIcon" type="TextureRect" parent="MarginContainer/Control/BuyButton/HBoxContainer" unique_id=1849669994]
+layout_mode = 2
+texture = ExtResource("3_kuyga")
+expand_mode = 2
+
+[node name="Price" type="Label" parent="MarginContainer/Control/BuyButton/HBoxContainer" unique_id=1330496917]
+unique_name_in_owner = true
+layout_mode = 2
+text = "10"
+label_settings = SubResource("LabelSettings_fte6k")
+
+[connection signal="pressed" from="MarginContainer/Control/BuyButton" to="." method="_on_buy_button_pressed"]

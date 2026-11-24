@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UnitStats" format=3 uid="uid://xr2juur7v044"]
+
+[ext_resource type="Script" uid="uid://cgbqulmoyenex" path="res://resource/unit_stats.gd" id="1_qgb2j"]
+[ext_resource type="Texture2D" uid="uid://n6a3ue2ps86d" path="res://studyasset/unit/enemy/skeleton/warrior/Idle-Sheet.png" id="1_wgfpr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmgyc"]
+atlas = ExtResource("1_wgfpr")
+region = Rect2(4, 2, 20, 30)
+
+[resource]
+script = ExtResource("1_qgb2j")
+name = "Second"
+type = 1
+icon = SubResource("AtlasTexture_jmgyc")
+metadata/_custom_type_script = "uid://cgbqulmoyenex"

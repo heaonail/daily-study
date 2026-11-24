@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="UnitStats" format=3 uid="uid://m1dfc6e0n5aq"]
+
+[ext_resource type="Script" uid="uid://cgbqulmoyenex" path="res://resource/unit_stats.gd" id="1_aw81b"]
+[ext_resource type="Texture2D" uid="uid://bgp7cc6pgl12l" path="res://studyasset/unit/enemy/skeleton/mage/Idle-Sheet.png" id="1_pepxq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xlned"]
+atlas = ExtResource("1_pepxq")
+region = Rect2(7, 0, 18, 32)
+
+[resource]
+script = ExtResource("1_aw81b")
+name = "First"
+type = 1
+icon = SubResource("AtlasTexture_xlned")
+health = 100
+metadata/_custom_type_script = "uid://cgbqulmoyenex"
