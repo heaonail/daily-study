@@ -34,6 +34,7 @@ var game_pause:bool=false
 var coins:int=100
 var equiped_weapon:Array[ItemWeapon]=[]
 var selected_weapon:ItemWeapon
+
 func success(chance:float)->bool:
 	var temp=randf()
 	if chance>=temp:
