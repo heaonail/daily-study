@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://beuiu0irdkagp" path="res://main/main.gd" id="1_c651c"]
 [ext_resource type="PackedScene" uid="uid://da6nfquoucql3" path="res://unit/player_template.tscn" id="2_pjrb6"]
 [ext_resource type="Script" uid="uid://cifdl0lkfydu0" path="res://main/camera.gd" id="5_3wy1v"]
-[ext_resource type="PackedScene" uid="uid://dos1f3a5c2fyf" path="res://unit/enemy/enemy_charge.tscn" id="6_fwcvl"]
 [ext_resource type="PackedScene" uid="uid://cckjdsqug346u" path="res://main/spawner.tscn" id="6_grrlh"]
 [ext_resource type="PackedScene" uid="uid://b0k0n8b5t1scv" path="res://UI/upgrade_panel.tscn" id="9_grrlh"]
 [ext_resource type="PackedScene" uid="uid://d02ijnldaisqs" path="res://UI/shop_card/shop_panel.tscn" id="10_0i4oc"]
@@ -246,8 +245,6 @@ script = ExtResource("5_3wy1v")
 
 [node name="PlayerTemplate" parent="." unique_id=770819118 instance=ExtResource("2_pjrb6")]
 position = Vector2(114, 113)
-
-[node name="EnemyCharge" parent="." unique_id=1406198897 instance=ExtResource("6_fwcvl")]
 
 [node name="Spawner" parent="." unique_id=1375931715 instance=ExtResource("6_grrlh")]
 

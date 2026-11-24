@@ -3748,8 +3748,8 @@ func creat_item_card()->ItemCard:\par
 \tab var item_card:=Global.ITEM_CARD_SCENE.instantiate() as ItemCard\par
 \tab item_card.item_card_selected.connect(_item_card_selected)\par
 \tab return item_card\par
-func _item_card_selected(card:ItemCard)->void:\par
-\tab\cf6 func _item_card_selected(card:ItemCard)->void:\par
+\par
+\cf6 func _item_card_selected(card:ItemCard)->void:\par
 \tab context_card=card\par
 \tab var can_combine:bool=false\par
 \tab if card.item.item_type==Item.ItemType.WEAPON:\par
