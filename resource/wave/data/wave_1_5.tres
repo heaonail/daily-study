@@ -28,6 +28,6 @@ metadata/_custom_type_script = "uid://baudxx58i4alj"
 script = ExtResource("1_qc50q")
 from = 1
 to = 5
-wave_time = 5.0
+wave_time = 3.0
 units = Array[ExtResource("2_5b04p")]([SubResource("Resource_hytpa"), SubResource("Resource_ulkhl"), SubResource("Resource_c4aj6")])
 metadata/_custom_type_script = "uid://veaut7n3q6s0"

@@ -277,4 +277,5 @@ visible = false
 
 [node name="CoinsBag" parent="GameUI" unique_id=1864238752 instance=ExtResource("11_bsumw")]
 
+[connection signal="on_wave_completed" from="Spawner" to="." method="_on_spawner_on_wave_completed"]
 [connection signal="on_next_wave" from="GameUI/ShopPanel" to="." method="_on_shop_panel_on_next_wave"]

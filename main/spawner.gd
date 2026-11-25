@@ -84,6 +84,7 @@ func _on_wave_timer_timeout() -> void:
 	Global.get_harvest_coins()
 	spawner_timer.stop()
 	on_wave_completed.emit()
+	#print("wave-timer timeout")
 	clear_enemy()
 	update_enemy_new_wave()
 
