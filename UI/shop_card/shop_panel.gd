@@ -98,4 +98,3 @@ func _on_sell_button_pressed() -> void:
 	context_card.queue_free()
 	context_card=null
 	Global.coins+=coins
-		

@@ -3814,6 +3814,45 @@ func creat_item_card()->ItemCard:\par
 \tab context_card.queue_free()\par
 \tab context_card=null\par
 \tab Global.coins+=coins\par
-\cf7\'ce\'ef\'c6\'b7\'b3\'f6\'ca\'db\'c2\'df\'bc\'ad\'a1\'a3\cf6\par
+\cf7\'ce\'ef\'c6\'b7\'b3\'f6\'ca\'db\'c2\'df\'bc\'ad\'a1\'a3\par
+\cf6\'b7\'c3\'ce\'caA\'c0\'e0B\'b1\'e4\'c1\'bf\'ca\'b1\'a3\'ac\'d3\'c3A[string]string\'ce\'aa\'b1\'e4\'c1\'bf\'c3\'fb\'a1\'a3\par
+\cf0\highlight2\'d0\'c2\'bd\'a8ItemPassive\'c0\'e0\'a3\'ac\'bc\'cc\'b3\'d0\'d7\'d4Item\'a3\'ac\'d0\'c2\'bd\'a8tres\'ce\'c4\'bc\'fe\'a3\'ac\'bc\'cc\'b3\'d0\'d7\'d4ItemPassive\par
+\cf3\highlight0 extends Item\par
+class_name ItemPassive\par
+@export var add_value:float\par
+@export var add_stats:String\par
+@export var remove_value:float\par
+@export var remove_stats:String\par
+func item_description()->String:\par
+\tab var description:String="[code]"\par
+\tab if add_value!=0:\par
+\tab\tab description+="[color=green]+%s %s[/color]\\n"% [add_value,add_stats]\par
+\tab if remove_value!=0:\par
+\tab\tab description+="[color=red]-%s %s[/color]\\n"% [remove_value,remove_stats]\par
+\tab description+="[/code]"\par
+\cf6\'d7\'dc\'bd\'e1\'d2\'bb\'cf\'c2[code][/code]\'ba\'cd[color][/color]\'ba\'cd%s\'b5\'c4\'ca\'b9\'d3\'c3\'a3\'ba[code]\'ba\'cd[/code],[color]\'ba\'cd[/color]\'c5\'e4\'b6\'d4\'ca\'b9\'d3\'c3\'a3\'ac\'c8\'ce\'ba\'ce\'d2\'bb\'b8\'f6var X:String\'b5\'c4X\'bf\'c9\'d2\'d4\'d3\'c3+\'ba\'c5\'ba\'cd=\'ba\'c5\'cc\'ed\'bc\'d3[]\'c4\'da\'c8\'dd\'a3\'ac\'c0\'fd\'c8\'e7X+="[code]"\'a3\'ac\'d6\'bb\'d0\'b4\'d2\'bb\'b8\'f6\'a3\'ac\'c8\'bb\'ba\'f3\'d4\'da\'c1\'ed\'cd\'e2\'d2\'bb\'d0\'d0\'a3\'ac\'b1\'f0\'b5\'c4\'b5\'d8\'b7\'bd\'d0\'b4X+="[/code]"\'a3\'ac\'d5\'e2\'d1\'f9\'d2\'c0\'c8\'bb\'ca\'c7\'d2\'bb\'b8\'f6\'d5\'fb\'cc\'e5\'a3\'ac\'cd\'ac\'d1\'f9\'c9\'fa\'d0\'a7\'a1\'a3[color]\'c0\'e0\'cb\'c6\'a1\'a3\'c6\'e4\'b6\'fe\'ca\'c7\ldblquote\'d5\'bc\'ce\'bb\'b7\'fb\rdblquote %s\'a3\'ac\'d4\'da""\'c4\'da\'b2\'bf\'c6\'f0\'b5\'bd\'d5\'bc\'ce\'bb\'d7\'f7\'d3\'c3\'a3\'ac\'d0\'b4\'bc\'b8\'b8\'f6\'be\'cd\'b4\'fa\'b1\'ed\'d6\'ae\'ba\'f3\'bb\'e1\'d3\'d0\'bc\'b8\'b8\'f6\'b6\'d4\'d3\'a6\'b1\'e4\'c1\'bf\'a3\'ac\'d4\'da""\'cd\'e2\'a3\'ac%\'ba\'f3\'b8\'fa[]\'a3\'ac[]\'d6\'d0\'c2\'de\'c1\'d0\'b1\'e4\'c1\'bf\'a3\'ac\'d2\'aa\'d3\'eb\'c7\'b0\'c3\'e6%s\'b8\'f6\'ca\'fd\'d2\'bb\'d6\'c2\'a1\'a3\cf3\par
+\tab return description\par
+func apply_passive()->void:\par
+\tab if add_value!=0:\par
+\tab\tab Global.player.stats[add_stats]+=add_value\par
+\tab if remove_value!=0:\par
+\tab\tab Global.player.stats[remove_stats]-=remove_value\cf7\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\cf6\par
 }
  

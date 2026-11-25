@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ItemPassive" format=3 uid="uid://d10mjbneaqbls"]
+
+[ext_resource type="Texture2D" uid="uid://dfnpj4nc0n788" path="res://studyasset/projectile/Bullet 24x24 Free Part 1A.png" id="1_imklg"]
+[ext_resource type="Script" uid="uid://bwm37quurmi6q" path="res://resource/item_talent/item_passive.gd" id="2_xsx04"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iv8pw"]
+atlas = ExtResource("1_imklg")
+region = Rect2(102, 317, 12, 14)
+
+[resource]
+script = ExtResource("2_xsx04")
+add_value = 5.0
+add_stats = "damage"
+item_name = "Power Ball"
+item_icon = SubResource("AtlasTexture_iv8pw")
+item_type = 2
+item_cost = 8
+metadata/_custom_type_script = "uid://bwm37quurmi6q"
