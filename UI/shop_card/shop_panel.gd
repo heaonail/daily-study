@@ -83,4 +83,19 @@ func _on_combine_button_pressed() -> void:
 	weapon_container.add_child(new_card)
 	new_card.item=up_weapon
 	context_card=null
-	
+
+func _on_sell_button_pressed() -> void:
+	if context_card==null:
+		return
+	var clicked_weapon:=context_card.item as ItemWeapon
+	var coins:=int(clicked_weapon.item_cost*0.75)
+	var weapon_remove:Weapon=Global.player.current_weapons.filter(func(w:Weapon):
+		return w.data.item_name==clicked_weapon.item_name).front()
+	if weapon_remove:
+		Global.player.current_weapons.erase(weapon_remove)
+		Global.equiped_weapon.erase(weapon_remove.data)
+		weapon_remove.queue_free()
+	context_card.queue_free()
+	context_card=null
+	Global.coins+=coins
+		
