@@ -1,4 +1,4 @@
-{\rtf1\ansi\ansicpg54936\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f1\fnil\fcharset1 Segoe UI Symbol;}}
+{\rtf1\ansi\ansicpg54936\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f1\fnil\fcharset1 Segoe UI Symbol;}{\f2\fnil\fcharset161 Calibri;}}
 {\colortbl ;\red0\green0\blue255;\red192\green192\blue192;\red0\green77\blue187;\red192\green80\blue77;\red0\green0\blue0;\red255\green0\blue0;\red0\green176\blue80;\red155\green0\blue211;\red128\green0\blue128;\red255\green255\blue0;\red0\green128\blue0;\red0\green0\blue128;\red209\green99\blue73;}
 {\*\generator Riched20 10.0.19041}\viewkind4\uc1 
 \pard\sa200\sl276\slmult1\f0\fs22\lang2052\'c0\'b6\'c9\'ab\'ce\'aa\'c9\'cf\'d2\'bb\'b4\'ce\'b4\'fa\'c2\'eb\'a3\'ac\'ba\'ec\'c9\'ab\'ce\'aa\'b1\'be\'b4\'ce\'d4\'f6\'cc\'ed\'b4\'fa\'c2\'eb\highlight1\par
@@ -3765,6 +3765,38 @@ func creat_item_card()->ItemCard:\par
 2.\'d5\'e2\'b8\'f6\'d0\'c5\'ba\'c5connect\'b5\'bdShopPanel\'d6\'d0\'a3\'ac\'d3\'c3\'d3\'da\'b4\'b4\'bd\'a8\'d2\'bb\'b8\'f6ItemCard\'a3\'ac\'b2\'a2\'d3\'c3\'d0\'c5\'ba\'c5\'b4\'ab\'b5\'dd\'b5\'c4Item\'c0\'e0\'d0\'cdvalue\'c0\'b4\'b3\'f5\'ca\'bc\'bb\'afItemCard\'b5\'c4\'c4\'da\'c8\'dd\par
 3.ItemCard\'a3\'a8\'b1\'be\'d6\'ca\'ca\'c7\'b8\'f6button\'a3\'a9\'b1\'bb\'b0\'b4\'cf\'c2\'ca\'b1\'a3\'acItemCard\'d7\'d4\'b4\'f8\'b5\'c4item_card_selected(item:ItemCard)\'b1\'bb\'b4\'a5\'b7\'a2\'a3\'ac\'b4\'a6\'c0\'ed\'ba\'af\'ca\'fd\'cd\'ac\'d1\'f9\'d4\'daShopPanel\'d6\'d0\par
 \cf13\'d6\'d8\'b4\'f3\'b4\'ed\'ce\'f3\'a3\'ba\'d4\'ad\'b1\'be\'ca\'f4\'d3\'daMain.tscn\'b5\'c4\'d7\'d3\'bd\'da\'b5\'e3Spawner\'a3\'ac\'b2\'bb\'d0\'a1\'d0\'c4tscn\'ba\'f3\'a3\'ac\'cb\'fc\'c0\'e0\'d6\'d0\'d7\'d4\'b6\'a8\'d2\'e5\'b5\'c4\'d2\'bb\'b8\'f6\'d0\'c5\'ba\'c5on_wave_timer_timeout\'d4\'ad\'b1\'be\'ca\'c7\'b0\'f3\'b6\'a8\'b5\'bdMain\'c0\'e0\'d6\'d0\'b5\'c4_on_spawner_on_wave_completed()\'ba\'af\'ca\'fd\'b5\'c4\'a3\'ac\'b5\'ab\'ca\'c7\'d2\'bb\'b2\'bb\'d0\'a1\'d0\'c4tscn\'bb\'af\'d2\'d4\'ba\'f3\'a3\'ac\'d5\'e2\'b8\'f6\'ba\'af\'ca\'fd\'cb\'fc\'ca\'a7\'c8\'a5\'b0\'f3\'b6\'a8\'c1\'cb\'a3\'ac\'d2\'b2\'be\'cd\'ca\'c7\'cb\'b5\'a3\'ac\'d0\'c5\'ba\'c5\'b7\'a2\'b3\'f6\'c3\'bb\'d3\'d0\'ba\'af\'ca\'fd\'c8\'a5\'b4\'a6\'c0\'ed\'c1\'cb\'a3\'ac\'b9\'b7\'c8\'d5\'b5\'c4\'d2\'b2\'b2\'bb\'b1\'a8\'b4\'ed\'a3\'ac\'ba\'f3\'d0\'f8\'b5\'c4\'c2\'df\'bc\'ad\'c8\'ab\'b2\'bf\'d7\'f7\'b7\'cf\'a3\'ac\'d6\'bb\'d2\'aa\'d4\'datscn\'bb\'af\'b5\'c4Spawner\'b5\'c4\'c0\'e0\'d6\'d0\'d1\'a1\'d4\'f1\'d0\'c5\'ba\'c5on_wave_timer_timeout\'d6\'d8\'d0\'c2\'b0\'f3\'b6\'a8\'bc\'b4\'bf\'c9\'a1\'a3over\'a1\'a3\par
-\cf6\par
+\cf6 func _on_combine_button_pressed() -> void:\par
+\tab if not context_card:\par
+\tab\tab return\par
+\tab var temp_card:=context_card.item as ItemWeapon\par
+\tab if temp_card.upgrade_to==null:\par
+\tab\tab return\par
+\tab var weapon_remove:Array[Weapon]=Global.player.current_weapons.filter(func(w:Weapon):\par
+\tab\tab return w.data.item_name==temp_card.item_name).slice(0,2)\par
+\cf7 lambda-\'cf\'a3\'c0\'b0\'d7\'d6\'c4\'b8\'b1\'ed\'b5\'da 11 \'b8\'f6\'d7\'d6\'c4\'b8\'a3\'a8\'b4\'f3\'d0\'b4 \f2\'cb\f0\'a3\'ac\'d0\'a1\'d0\'b4 \f2\'eb\f0\'a3\'a9\'a3\'ac\'d6\'d0\'ce\'c4\'d2\'f4\'d2\'eb\'ce\'aa"\'c0\'bc\'c4\'be\'b4\'ef"\'b1\'ed\'ca\'be\'c4\'e4\'c3\'fb\'ba\'af\'ca\'fd\emdash\emdash\'d2\'bb\'d6\'d6\'c3\'bb\'d3\'d0\'c3\'fb\'d7\'d6\'a1\'a2\'bf\'c9\'d2\'d4\'c1\'d9\'ca\'b1\'b6\'a8\'d2\'e5\'b2\'a2\'c1\'a2\'bc\'b4\'ca\'b9\'d3\'c3\'b5\'c4\'ba\'af\'ca\'fd\'a1\'a3\'b8\'c3\'c0\'fd\'d7\'d3\'d6\'d0player\'d6\'d0\'d3\'d0\'b8\'f6\'ca\'fd\'d7\'e9currenti_weapons[weapon]\'c0\'e0\'d0\'cd\'ca\'c7weapon\'ca\'fd\'d7\'e9\'a3\'ac\cf6\'a3\'a8\'c7\'b0\'ba\'f3\'b5\'c4\'ca\'fd\'d7\'e9\'c0\'e0\'d0\'cd\'d2\'aa\'d2\'bb\'d6\'c2\'a3\'ac\'b2\'bb\'c8\'bb\'bb\'e1\'b1\'a8\'b4\'ed\'a3\'a9\cf7\'b4\'e6\'b4\'a2\'d7\'c5player\'d7\'b0\'b1\'b8\'b5\'c4\'ce\'e4\'c6\'f7\'a3\'ac\'c4\'e4\'c3\'fb\'ba\'af\'ca\'fd\'b4\'ab\'c8\'eb\'d2\'bb\'b8\'f6w:weapon\'b2\'ce\'ca\'fd\'a3\'ac\'c8\'ce\'ba\'ce\'d3\'ebtemp_card\'b5\'c4item_name\'c3\'fb\'d7\'d6\'cf\'e0\'cd\'ac\'b5\'c4w\'b6\'bc\'bb\'e1\'b1\'bb\'b7\'c5\'bd\'f8var weapon_remove\'d6\'d0\'c8\'a5\'a1\'a3slice(0\'a3\'ac2)godot\'d7\'d4\'b4\'f8\'b5\'c4\'ba\'af\'ca\'fd\'b1\'ed\'ca\'be\'ca\'fd\'d7\'e9\'a3\'a8\'b4\'d30\'bf\'aa\'ca\'bc\'a3\'ac\'d2\'c0\'b4\'ce\'c8\'a1\'c1\'a9\'ca\'fd\'cc\'ee\'b3\'e4\'bd\'f8weapon_remove\'a3\'a9\'cf\'c2\'c3\'e6\'b5\'c4\'c0\'fd\'d7\'d3\'ca\'c7\'d2\'bb\'d1\'f9\'b5\'c4\'a1\'a3\cf6\par
+\tab var card_remove:=weapon_container.get_children().filter(func(c:ItemCard):\par
+\tab\tab return c.item.item_name==temp_card.item_name).slice(0,2)\par
+\cf7\'cf\'c8\'b0\'d1\'d0\'e8\'d2\'aa\'c9\'be\'b3\'fd\'b5\'c4weapon\'b1\'e4\'c1\'bf\'ba\'cd\'d0\'e8\'d2\'aa\'d2\'c6\'b3\'fd\'b5\'c4itemcard\'b1\'e4\'c1\'bf\'b4\'e6\'b5\'bd\'ca\'fd\'d7\'e9\'d6\'d0\'a3\'ac\'b1\'b8\'d3\'c3\cf6\par
+\tab if weapon_remove.size()<2 or card_remove.size()<2:\par
+\tab\tab return\par
+\cf7\'b2\'bb\'b9\'bb\'c1\'bd\'b8\'f6\'ce\'de\'b7\'a8\'ba\'cf\'b3\'c9\'be\'cdreturn\cf6\par
+\tab for weapon:Weapon in weapon_remove:\par
+\tab\tab Global.player.current_weapons.erase(weapon)\par
+\tab\tab Global.equiped_weapon.erase(weapon.data)\par
+\tab\tab weapon.queue_free()\par
+\cf7\'b1\'b8\'d3\'c3\'b5\'c4\'ca\'fd\'d7\'e9\'cf\'d6\'d4\'da\'c6\'f0\'d7\'f7\'d3\'c3\'c1\'cb\'a3\'ac\'b4\'d3player.current_weapos\'d6\'d0\'c9\'be\'b3\'fd\'b6\'d4\'d3\'a6\'b5\'c4\'a3\'acGlobal\'d6\'d0\'d2\'b2\'bd\'abdata\'c9\'be\'b3\'fd\'a3\'ac\'ca\'cd\'b7\'c5tscn\cf6\par
+\tab for card:ItemCard in card_remove:\par
+\tab\tab card.queue_free()\par
+\cf7\'cd\'ac\'c9\'cf\'a1\'a3\cf6\par
+\tab var up_weapon:ItemWeapon = load(temp_card.upgrade_to.resource_path)\par
+\cf7\'bb\'f1\'c8\'a1\'d2\'bb\'b8\'f6ItemWeapon\'b5\'c4tres\'ce\'c4\'bc\'fe\cf6\par
+\tab Global.player.equip_weapon(up_weapon)\par
+\tab Global.equiped_weapon.append(up_weapon)\par
+\tab var new_card:=creat_item_card()\par
+\tab weapon_container.add_child(new_card)\par
+\cf7\'b4\'b4\'bd\'a8\'d0\'c2\'b5\'c4item_card\'bc\'d3\'c8\'eb\'b5\'bdweapon_container\'d6\'d0\'c8\'a5\'a3\'ac\'b2\'a2\'b3\'f5\'ca\'bc\'bb\'af\cf6\par
+\tab new_card.item=up_weapon\par
+\tab context_card=null\par
+\tab\par
 }
  

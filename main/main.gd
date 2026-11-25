@@ -49,7 +49,7 @@ func _on_spawner_on_wave_completed() -> void:
 	clear_coins()
 	await get_tree().create_timer(1.0).timeout
 	upgrade_panel.apply_upgrade(spawner.wave_index)
-	print(spawner.wave_index)
+	#print(spawner.wave_index)
 	#Global.calculate_tier_odds(spawner.wave_index)
 	#upgrade_panel.show()
 	upgrade_panel.visible=true
