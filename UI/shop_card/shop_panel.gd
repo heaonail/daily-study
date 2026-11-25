@@ -57,4 +57,26 @@ func _item_card_selected(card:ItemCard)->void:
 			can_combine=true
 	combine_button.disabled=not can_combine
 		
+
+func _on_combine_button_pressed() -> void:
+	if not context_card:
+		return
+	var temp_card:=context_card.item as ItemWeapon
+	if temp_card.upgrade_to==null:
+		return
+	var weapon_remove:Array[ItemWeapon]=Global.player.current_weapons.filter(func(w:ItemWeapon):
+		return w.item_name==temp_card.item_name).slice(0,2)
+	var card_remove:Array[ItemCard]=weapon_container.get_children().filter(func(c:ItemCard):
+		return c.item.item_name==temp_card.item_name).slice(0,2)
+	if weapon_remove.size()<2 or card_remove.size()<2:
+		return
+	for weapon:ItemWeapon in weapon_remove:
+		Global.player.current_weapons.erase(weapon)
+		Global.equiped_weapon.erase(weapon.stats)
+		weapon.queue_free()
+	for card:ItemCard in card_remove:
+		card.queue_free()
+	var up_weapon:ItemWeapon = load(temp_card.upgrade_to.resource_path)
+	Global.player.equip_weapon(up_weapon)
+	Global.equiped_weapon.append(up_weapon)
 	
