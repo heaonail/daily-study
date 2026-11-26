@@ -10,8 +10,10 @@ region = Rect2(102, 317, 12, 14)
 [resource]
 script = ExtResource("2_xsx04")
 add_value = 5.0
-add_stats = "damage"
-item_name = "Power Ball"
+add_stats = "life_steal"
+remove_value = 2.0
+remove_stats = "health"
+item_name = "Cape"
 item_icon = SubResource("AtlasTexture_iv8pw")
 item_type = 2
 item_cost = 8

@@ -70,9 +70,17 @@ func compute_closest_target()->EnemyTemplate:
 func set_weapon(value:ItemWeapon)->void:
 	data=value
 	collision.shape.radius=value.stats.max_range
+	apply_tier_outline()
 
 func can_use_weapon()->bool:
 	if cooldown_timer.is_stopped() and closest_target!=null:
 		return true
 	else:
 		return false
+
+func apply_tier_outline()->void:
+	if data.item_tier==Global.GlobalUpgradeTier.COMMON:
+		sprite.material=null
+		return
+	var outline_color:=Global.TIER_COLOR[data.item_tier]
+	sprite.material.set_shader_parameter("outline_color",outline_color)

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ItemPassive" format=3 uid="uid://bhvrcoeydu6rv"]
+
+[ext_resource type="Texture2D" uid="uid://gpnalau1y6g6" path="res://studyasset/projectile/Bullet 24x24 Part 6A Free.png" id="1_208g1"]
+[ext_resource type="Script" uid="uid://bwm37quurmi6q" path="res://resource/item_talent/item_passive.gd" id="1_gga1e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynafq"]
+atlas = ExtResource("1_208g1")
+region = Rect2(291, 246, 18, 16)
+
+[resource]
+script = ExtResource("1_gga1e")
+add_value = 15.0
+add_stats = "luck"
+item_name = "Mighty Sword"
+item_icon = SubResource("AtlasTexture_ynafq")
+item_tier = 2
+item_type = 2
+item_cost = 32
+metadata/_custom_type_script = "uid://bwm37quurmi6q"

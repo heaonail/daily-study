@@ -22,6 +22,11 @@ const ODDS={
 	"rare":{"start_wave":4,"base_multiple":0.02},
 	"legendary":{"start_wave":8,"base_multiple":0.002},
 }
+const TIER_COLOR:Dictionary[GlobalUpgradeTier,Color]={
+	GlobalUpgradeTier.EPIC:Color(0.0,0.557,0.741),
+	GlobalUpgradeTier.RARE:Color(0.478,0.251,0.71),
+	GlobalUpgradeTier.LEGENDARY:Color(0.906,0.212,0.212),
+}
 
 var player:PlayerTemplate
 var game_pause:bool=false

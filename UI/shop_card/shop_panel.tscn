@@ -20,8 +20,12 @@
 [ext_resource type="Resource" uid="uid://mnbfctbt2u0a" path="res://resource/item_weapon/range/wand/wand_2.tres" id="16_jxku7"]
 [ext_resource type="Resource" uid="uid://doy74j37f5px7" path="res://resource/item_weapon/range/wand/wand_3.tres" id="17_lkjo3"]
 [ext_resource type="Resource" uid="uid://c0sb3wpr2mwan" path="res://resource/item_weapon/range/wand/wand_4.tres" id="18_ii7lj"]
+[ext_resource type="Resource" uid="uid://d10mjbneaqbls" path="res://resource/item_talent/data/passive_cape.tres" id="19_l3lvq"]
+[ext_resource type="Resource" uid="uid://bpha067ktjtr3" path="res://resource/item_talent/data/passive_rage.tres" id="20_yu35l"]
 [ext_resource type="PackedScene" uid="uid://n5ehc4t0sbsh" path="res://UI/shop_card/item_card.tscn" id="21_0nms8"]
+[ext_resource type="Resource" uid="uid://bscs6wh7igcrk" path="res://resource/item_talent/data/passive_power_ball.tres" id="21_7hcr0"]
 [ext_resource type="PackedScene" uid="uid://dgoipk0m5seap" path="res://UI/coins_bag.tscn" id="21_hrj24"]
+[ext_resource type="Resource" uid="uid://bhvrcoeydu6rv" path="res://resource/item_talent/data/passive_mighty_sword.tres" id="22_jywh7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_as1ll"]
 font_size = 32
@@ -58,7 +62,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_o1t8q")
-shop_item = Array[ExtResource("2_df5p6")]([ExtResource("3_hrj24"), ExtResource("4_0nms8"), ExtResource("5_3k1r7"), ExtResource("6_of08w"), ExtResource("7_08mc2"), ExtResource("8_l3lvq"), ExtResource("9_yu35l"), ExtResource("10_7hcr0"), ExtResource("11_jywh7"), ExtResource("12_3jk8a"), ExtResource("13_ab7er"), ExtResource("14_mgkrt"), ExtResource("15_01bvi"), ExtResource("16_jxku7"), ExtResource("17_lkjo3"), ExtResource("18_ii7lj")])
+shop_item = Array[ExtResource("2_df5p6")]([ExtResource("3_hrj24"), ExtResource("4_0nms8"), ExtResource("5_3k1r7"), ExtResource("6_of08w"), ExtResource("7_08mc2"), ExtResource("8_l3lvq"), ExtResource("9_yu35l"), ExtResource("10_7hcr0"), ExtResource("11_jywh7"), ExtResource("12_3jk8a"), ExtResource("13_ab7er"), ExtResource("14_mgkrt"), ExtResource("15_01bvi"), ExtResource("16_jxku7"), ExtResource("17_lkjo3"), ExtResource("18_ii7lj"), ExtResource("19_l3lvq"), ExtResource("20_yu35l"), ExtResource("21_7hcr0"), ExtResource("22_jywh7")])
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=401994872]
 layout_mode = 1

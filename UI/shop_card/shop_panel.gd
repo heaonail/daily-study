@@ -38,7 +38,10 @@ func _on_item_purchased(item:Item)->void:
 		var weapon:=item as ItemWeapon
 		Global.player.equip_weapon(weapon)
 		Global.equiped_weapon.append(weapon)
-	item_card.item=item
+	elif item.item_type==Item.ItemType.PASSIVE:
+		passive_container.add_child(item_card)
+		var passive:=item as ItemPassive
+		passive.apply_passive()
 
 func creat_item_card()->ItemCard:
 	var item_card:=Global.ITEM_CARD_SCENE.instantiate() as ItemCard
