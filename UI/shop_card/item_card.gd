@@ -6,7 +6,7 @@ signal item_card_selected(card:ItemCard)
 
 func _set_item(value:Item)->void:
 	item=value
-	item_icon.texture=value.item_icon
+	item_icon.texture=item.item_icon
 	var style:=Global.get_tier_style(value.item_tier as Global.GlobalUpgradeTier)
 	add_theme_stylebox_override("normal",style)
 

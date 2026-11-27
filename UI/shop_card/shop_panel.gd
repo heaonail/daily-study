@@ -35,11 +35,13 @@ func _on_item_purchased(item:Item)->void:
 	var item_card:=creat_item_card()
 	if item.item_type==Item.ItemType.WEAPON:
 		weapon_container.add_child(item_card)
+		item_card.item=item
 		var weapon:=item as ItemWeapon
 		Global.player.equip_weapon(weapon)
 		Global.equiped_weapon.append(weapon)
 	elif item.item_type==Item.ItemType.PASSIVE:
 		passive_container.add_child(item_card)
+		item_card.item=item
 		var passive:=item as ItemPassive
 		passive.apply_passive()
 
@@ -61,31 +63,31 @@ func _item_card_selected(card:ItemCard)->void:
 	combine_button.disabled=not can_combine
 		
 
-#func _on_combine_button_pressed() -> void:
-	#if not context_card:
-		#return
-	#var temp_card:=context_card.item as ItemWeapon
-	#if temp_card.upgrade_to==null:
-		#return
-	#var weapon_remove:Array[Weapon]=Global.player.current_weapons.filter(func(w:Weapon):
-		#return w.data.item_name==temp_card.item_name).slice(0,2)
-	#var card_remove:=weapon_container.get_children().filter(func(c:ItemCard):
-		#return c.item.item_name==temp_card.item_name).slice(0,2)
-	#if weapon_remove.size()<2 or card_remove.size()<2:
-		#return
-	#for weapon:Weapon in weapon_remove:
-		#Global.player.current_weapons.erase(weapon)
-		#Global.equiped_weapon.erase(weapon.data)
-		#weapon.queue_free()
-	#for card:ItemCard in card_remove:
-		#card.queue_free()
-	#var up_weapon:ItemWeapon = load(temp_card.upgrade_to.resource_path)
-	#Global.player.equip_weapon(up_weapon)
-	#Global.equiped_weapon.append(up_weapon)
-	#var new_card:=creat_item_card()
-	#weapon_container.add_child(new_card)
-	#new_card.item=up_weapon
-	#context_card=null
+func _on_combine_button_pressed() -> void:
+	if not context_card:
+		return
+	var temp_card:=context_card.item as ItemWeapon
+	if temp_card.upgrade_to==null:
+		return
+	var weapon_remove:Array[Weapon]=Global.player.current_weapons.filter(func(w:Weapon):
+		return w.data.item_name==temp_card.item_name).slice(0,2)
+	var card_remove:=weapon_container.get_children().filter(func(c:ItemCard):
+		return c.item.item_name==temp_card.item_name).slice(0,2)
+	if weapon_remove.size()<2 or card_remove.size()<2:
+		return
+	for weapon:Weapon in weapon_remove:
+		Global.player.current_weapons.erase(weapon)
+		Global.equiped_weapon.erase(weapon.data)
+		weapon.queue_free()
+	for card:ItemCard in card_remove:
+		card.queue_free()
+	var up_weapon:ItemWeapon = load(temp_card.upgrade_to.resource_path)
+	Global.player.equip_weapon(up_weapon)
+	Global.equiped_weapon.append(up_weapon)
+	var new_card:=creat_item_card()
+	weapon_container.add_child(new_card)
+	new_card.item=up_weapon
+	context_card=null
 
 func _on_sell_button_pressed() -> void:
 	if context_card==null:
