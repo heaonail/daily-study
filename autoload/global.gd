@@ -5,8 +5,10 @@ signal hit_text(unit:Unit,damage:int)
 signal heal_text(unit:Unit,heal:int)
 signal on_upgrade_card_selected
 signal on_enemy_died(enemy:EnemyTemplate)
+
 const COIN_SCENE = preload("uid://doarpomhccaah")
 const ITEM_CARD_SCENE = preload("uid://n5ehc4t0sbsh")
+const SELECTION_CARD_SCENE = preload("uid://b3er6dc1j0a42")
 
 const GET_HIT_COLOR = preload("uid://btr1t4dd3jej6")
 const FLOAT_TEXT = preload("uid://c73lt7upfbo50")
@@ -28,11 +30,23 @@ const TIER_COLOR:Dictionary[GlobalUpgradeTier,Color]={
 	GlobalUpgradeTier.LEGENDARY:Color(0.906,0.212,0.212),
 }
 
+var available_players:Dictionary[String,PackedScene]={
+	"First":preload("uid://g4nrue7frktm"),
+	"Second":preload("uid://dc6n03aeo0xi7"),
+	"Third":preload("uid://c8fiytak1skjx"),
+	"Fourth":preload("uid://btye4b40856fh"),
+	"Template":preload("uid://da6nfquoucql3")
+}
+
 var player:PlayerTemplate
 var game_pause:bool=false
 var coins:int=100
 var equiped_weapon:Array[ItemWeapon]=[]
 var selected_weapon:ItemWeapon
+
+var main_player_selected:UnitStats
+var main_weapon_selected:ItemWeapon
+
 func success(chance:float)->bool:
 	var temp=randf()
 	if chance>=temp:
@@ -115,3 +129,9 @@ func get_tier_style(tier:GlobalUpgradeTier)->StyleBoxFlat:
 
 func get_harvest_coins()->void:
 	coins+=player.stats.harvesting
+
+func get_selected_player()->PlayerTemplate:
+	var player_scene:=available_players[main_player_selected.name]
+	var player_instance:=player_scene.instantiate() as PlayerTemplate
+	player=player_instance
+	return player

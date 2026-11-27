@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UnitStats" format=3 uid="uid://b1psh8qqtw76c"]
+
+[ext_resource type="Texture2D" uid="uid://yqdhx4q4xnyq" path="res://studyasset/unit/enemy/orc/rogue/Run-Sheet.png" id="1_1q8n1"]
+[ext_resource type="Script" uid="uid://cgbqulmoyenex" path="res://resource/unit_stats.gd" id="2_mtkww"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7bwy"]
+atlas = ExtResource("1_1q8n1")
+region = Rect2(21, 35, 24, 29)
+
+[resource]
+script = ExtResource("2_mtkww")
+name = "Fourth"
+icon = SubResource("AtlasTexture_e7bwy")
+metadata/_custom_type_script = "uid://cgbqulmoyenex"

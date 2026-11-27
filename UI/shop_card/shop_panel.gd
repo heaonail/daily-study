@@ -103,3 +103,8 @@ func _on_sell_button_pressed() -> void:
 	context_card.queue_free()
 	context_card=null
 	Global.coins+=coins
+
+func creat_item_card_weapon(weapon:ItemWeapon)->void:
+	var card=creat_item_card()
+	weapon_container.add_child(card)
+	card.item=weapon

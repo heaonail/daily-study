@@ -1,7 +1,7 @@
 extends Node2D
 class_name Main
 
-@export var player:PlayerTemplate
+#@export var player:PlayerTemplate
 
 @onready var spawner: Spawner = $Spawner
 @onready var upgrade_panel: UpgradePanel = $GameUI/UpgradePanel
@@ -10,7 +10,7 @@ class_name Main
 var coin_list:Array[Coin]=[]
 
 func _ready() -> void:
-	Global.player=player
+	#Global.player=player
 	Global.block_text.connect(creat_block_text)
 	Global.hit_text.connect(creat_hit_text)
 	Global.heal_text.connect(creat_heal_text)
@@ -81,3 +81,14 @@ func clear_coins()->void:
 				var temp:=coin as Coin
 				temp.set_collect_target(target_pos)
 	coin_list.clear()
+
+
+func _on_selection_panel_on_selection_completed() -> void:
+	var player:=Global.get_selected_player()
+	add_child(player)
+	Global.get_harvest_coins()
+	player.equip_weapon(Global.main_weapon_selected)
+	shop_panel.creat_item_card_weapon(Global.main_weapon_selected)
+	Global.equiped_weapon.append(Global.main_weapon_selected)
+	spawner.start_wave()
+	Global.game_pause=false

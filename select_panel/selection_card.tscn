@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b3er6dc1j0a42"]
+
+[ext_resource type="StyleBox" uid="uid://uq7mm7ahp4uj" path="res://UI/common_style.tres" id="1_bfao5"]
+[ext_resource type="Script" uid="uid://cif3dom25j2jd" path="res://select_panel/selection_card.gd" id="2_xanro"]
+
+[node name="SelectionCard" type="Button" unique_id=1920603423]
+custom_minimum_size = Vector2(128, 128)
+theme_override_styles/normal = ExtResource("1_bfao5")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("2_xanro")

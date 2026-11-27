@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://c8fiytak1skjx"]
 
 [ext_resource type="PackedScene" uid="uid://da6nfquoucql3" path="res://unit/player_template.tscn" id="1_cvqeq"]
+[ext_resource type="Resource" uid="uid://bm05srk7onxlv" path="res://resource/player/player_third.tres" id="2_3v1tu"]
 
 [node name="PlayerThree" unique_id=770819118 instance=ExtResource("1_cvqeq")]
+stats = ExtResource("2_3v1tu")
