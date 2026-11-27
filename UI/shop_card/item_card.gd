@@ -12,5 +12,6 @@ func _set_item(value:Item)->void:
 
 func _on_pressed() -> void:
 	if item.item_type==Item.ItemType.WEAPON:
+		#print(item.item_type)
 		Global.selected_weapon=item as ItemWeapon
 		item_card_selected.emit(self)
