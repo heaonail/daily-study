@@ -3848,10 +3848,131 @@ void fragment() \{\par
 vec4 color = texture(TEXTURE, UV);\par
 vec2 size = TEXTURE_PIXEL_SIZE * outline_width;\par
 \}\par
-\cf7\'d5\'e2\'b6\'ce\'b4\'fa\'c2\'eb\'bf\'c9\'d2\'d4\'ca\'b9\'a3\'a8\'bc\'d9\'c9\'e8Sprite2D\'bd\'da\'b5\'e3\'ca\'c7\'ce\'e4\'c6\'f7\'a3\'a9\'ce\'e4\'c6\'f7\'d6\'dc\'b1\'df\'d3\'d0\'d2\'bb\'c2\'d6\'c0\'aa\'a3\'ac\'d4\'da\'bc\'ec\'b2\'e9\'c3\'e6\'b0\'e5\'d6\'d0\'b5\'c4\'d7\'c5\'c9\'ab\'c6\'f7\'bf\'c9\'d2\'d4\'b5\'f7\'d5\'fb\'b2\'bb\'cd\'ac\'b5\'c4\'d1\'d5\'c9\'ab\'a3\'ac\'b2\'bb\'cd\'ac\'b5\'c4\'d1\'d5\'c9\'ab\'b5\'c4\'d7\'c5\'c9\'ab\'c6\'f7\'d2\'b2\'bf\'c9\'d2\'d4\'c1\'ed\'cd\'e2\'b1\'a3\'b4\'e6\'a3\'ac\'b6\'d4\'d3\'a6\'b2\'bb\'cd\'ac\'b5\'c4\'c3\'fb\'d7\'d6\'a3\'ac\'b2\'bb\'cd\'ac\'b5\'c4\'c3\'fb\'d7\'d6\'bf\'c9\'d2\'d4\'ce\'aa\'b2\'bb\'cd\'ac\'b5\'c8\'bc\'b6\'b5\'c4\'ce\'e4\'c6\'f7\'cc\'ed\'bc\'d3\'b9\'e2\'bb\'b7\'d0\'a7\'b9\'fb\'a1\'a3\par
+\cf7\'d5\'e2\'b6\'ce\'b4\'fa\'c2\'eb\'bf\'c9\'d2\'d4\'ca\'b9\'a3\'a8\'bc\'d9\'c9\'e8Sprite2D\'bd\'da\'b5\'e3\'ca\'c7\'ce\'e4\'c6\'f7\'a3\'a9\'ce\'e4\'c6\'f7\'d6\'dc\'b1\'df\'d3\'d0\'d2\'bb\'c2\'d6\'c0\'aa\'a3\'ac\'d4\'da\'bc\'ec\'b2\'e9\'c3\'e6\'b0\'e5\'d6\'d0\'b5\'c4\'d7\'c5\'c9\'ab\'c6\'f7\'bf\'c9\'d2\'d4\'b5\'f7\'d5\'fb\'b2\'bb\'cd\'ac\'b5\'c4\'d1\'d5\'c9\'ab\'a3\'ac\'d5\'e2\'b8\'f6\'d7\'c5\'c9\'ab\'c6\'f7\'ca\'c7\'d6\'b1\'bd\'d3\'d7\'f7\'d3\'c3\'d4\'daSprite2D\'bd\'da\'b5\'e3\'c9\'cf\'b5\'c4\'a3\'ac\'bf\'c9\'d2\'d4\'d6\'b1\'bd\'d3\'ca\'b9\'d3\'c3\'b2\'bb\'cd\'ac\'b5\'c4\'d1\'d5\'c9\'ab\'c0\'b4\'b8\'c4\'b1\'e4\'c6\'e4\'c2\'d6\'c0\'aa\'d1\'d5\'c9\'ab\par
+\cf0\'d4\'daglobal\'d6\'d0\'cc\'ed\'bc\'d3\'d1\'d5\'c9\'ab\'d7\'d6\'b5\'e4,\'d7\'d6\'b5\'e4\'ca\'c7\'bc\'fc\'d6\'b5\'b6\'d4\'a3\'ac\'c8\'e7\'cf\'c2\'a3\'ba\par
+\cf6 const TIER_COLOR:Dictionary[GlobalUpgradeTier,Color]=\{\par
+GlobalUpgradeTier.Epic:Color[0.0,0.557,0.741],\par
+GlobalUpgradeTier.RARE:Color(0.478,0.251,0.71),\par
+GlobalUpgradeTier.LEGENDARY:Color(0.906,0.212,0.212),\par
+\}\par
+\cf0\'d4\'daWeapon\'c0\'e0\'d6\'d0\'a3\'ac\'d3\'a6\'d3\'c3\'d5\'e2\'d0\'a9\'d1\'d5\'c9\'ab\'a1\'a3\par
+\cf6 func apply_tier_outline()->void:\par
+\tab if data.item_iter==Global.GlobalUpgradeTier.COMMON:\par
+\tab\tab sprite.material=null\par
+\tab\tab return\par
+\tab var outline_color=Global.TIER_COLOR[data.item_tier]\par
+\tab sprite.material.set_shader_parameter("outline_color",outline_color)\par
+\cf0\highlight2\'d4\'ad\'b0\'e6ShopPanel\'c0\'e0\'d6\'d0\'d3\'d0\'c1\'a9\'d6\'d8\'b4\'f3\'d3\'ef\'be\'e4\'c8\'b1\'ca\'a7\'a3\'ac\'d5\'d2\'c1\'cb\'d2\'bb\'c9\'cf\'ce\'e7\'a3\'ac\'d7\'d4\'bc\'ba\'d6\'bb\'d5\'d2\'b5\'bd\'d2\'bb\'b8\'f6\'a3\'ac\'c7\'a7\'ce\'ca\'b0\'ef\'c3\'a6\'c8\'ab\'d5\'d2\'b5\'bd\'c1\'cb\'a3\'ac\'b4\'fa\'c2\'eb\'c8\'e7\'cf\'c2\'a3\'ba\par
+\cf3\highlight0 extends Panel\par
+class_name ShopPanel\par
 \par
+const SHOP_CARD_SCENE = preload("uid://oidwksij4i1s")\par
+@export var shop_item:Array[Item]=[]\par
+@onready var item_container: HBoxContainer = %ItemContainer\par
+@onready var passive_container: GridContainer = %PassiveContainer\par
+@onready var weapon_container: GridContainer = %WeaponContainer\par
 \par
+@onready var combine_button: Button = %CombineButton\par
+var context_card:ItemCard\par
 \par
+signal on_next_wave\par
+\par
+func _ready() -> void:\par
+\tab for child in passive_container.get_children():\par
+\tab\tab child.queue_free()\par
+\tab for child in weapon_container.get_children():\par
+\tab\tab child.queue_free()\par
+\par
+func load_shop(current_wave:int)->void:\par
+\tab for child in item_container.get_children():\par
+\tab\tab child.queue_free()\par
+\tab var selected_item:=Global.select_item_offer(shop_item,current_wave)\par
+\tab for i in 4:\par
+\tab\tab var instance:=SHOP_CARD_SCENE.instantiate() as ShopCard\par
+\tab\tab instance.item_purchased.connect(_on_item_purchased)\par
+\tab\tab item_container.add_child(instance)\par
+\tab\tab\cf6 instance.shop_item=selected_item[i]\par
+\cf3\tab\cf7\'d5\'e2\'c0\'ef\'d3\'d0\'b8\'f6\'b8\'b3\'d6\'b5\'b5\'c4\'d3\'ef\'be\'e4\'a3\'ac\'cf\'c2\'c3\'e6ItemCard\'c0\'ef\'c8\'b4\'c3\'bb\'d3\'d0\'a3\'ac\'d2\'bb\'d6\'b1\'c3\'bb\'c4\'dc\'bf\'b4\'b3\'f6\'c0\'b4\'a1\'a3\cf3\par
+func _on_new_wave_button_pressed() -> void:\par
+\tab on_next_wave.emit()\par
+\par
+func _on_item_purchased(item:Item)->void:\par
+\tab var item_card:=creat_item_card()\par
+\tab if item.item_type==Item.ItemType.WEAPON:\par
+\tab\tab weapon_container.add_child(item_card)\par
+\tab\tab\cf6 item_card.item=item\par
+\tab\'d5\'e2\'c0\'ef\'bf\'b4\'b3\'f6\'c0\'b4\'c1\'cb\'a3\'ac\'b5\'ab\'ca\'c7\'d4\'cb\'d0\'d0\'bb\'b9\'ca\'c7\'b1\'a8\'b4\'ed\'a3\'ac\'bb\'b3\'d2\'c9\'d7\'d4\'bc\'ba\'a3\'ac\'d2\'f2\'ce\'aa\'cf\'c2\'c3\'e6\'d2\'b2\'c8\'b1\'d2\'bb\'b8\'f6\'c3\'bb\'bf\'bc\'c2\'c7\'b5\'bd\cf3\par
+\tab\tab var weapon:=item as ItemWeapon\par
+\tab\tab Global.player.equip_weapon(weapon)\par
+\tab\tab Global.equiped_weapon.append(weapon)\par
+\tab elif item.item_type==Item.ItemType.PASSIVE:\par
+\tab\tab passive_container.add_child(item_card)\par
+\tab\tab\cf6 item_card.item=item\par
+\tab\tab\'be\'cd\'ca\'c7\'d5\'e2\'b8\'f6\'a3\'ac\'b6\'bc\'d2\'aa\'b8\'b3\'d6\'b5\'b5\'c4\'a3\'ac\'c7\'a7\'ce\'ca\'b0\'ef\'c3\'a6\'d5\'d2\'b3\'f6\'c0\'b4\'c1\'cb\'a3\'ac\'cb\'c9\'d2\'bb\'bf\'da\'c6\'f8\'a1\'a3\par
+\'d7\'dc\'bd\'e1\'d2\'bb\'cf\'c2\'a3\'basetter\'d3\'ef\'be\'e4\'d2\'b2\'d0\'e8\'d2\'aa\'d6\'f7\'b6\'af\'c8\'a5\'b8\'b3\'d6\'b5\'a3\'ac\'ca\'b5\'c0\'fd\'bb\'af\'b5\'c4TSCN\'b2\'a2\'c3\'bb\'d3\'d0\'c8\'ce\'ba\'ce\'d6\'b5\'d4\'da\'c0\'ef\'c3\'e6\'a1\'a3\cf3\par
+\tab\tab var passive:=item as ItemPassive\par
+\tab\tab passive.apply_passive()\par
+\par
+func creat_item_card()->ItemCard:\par
+\tab var item_card:=Global.ITEM_CARD_SCENE.instantiate() as ItemCard\par
+\tab item_card.item_card_selected.connect(_item_card_selected)\par
+\tab return item_card\par
+\par
+func _item_card_selected(card:ItemCard)->void:\par
+\tab context_card=card\par
+\tab var can_combine:bool=false\par
+\tab if card.item.item_type==Item.ItemType.WEAPON:\par
+\tab\tab var count:int=0\par
+\tab\tab for i :ItemWeapon in Global.equiped_weapon:\par
+\tab\tab\tab if i.item_name==card.item.item_name:\par
+\tab\tab\tab\tab count+=1\par
+\tab\tab if count>=2:\par
+\tab\tab\tab can_combine=true\par
+\tab combine_button.disabled=not can_combine\par
+\tab\tab\par
+\par
+func _on_combine_button_pressed() -> void:\par
+\tab if not context_card:\par
+\tab\tab return\par
+\tab var temp_card:=context_card.item as ItemWeapon\par
+\tab if temp_card.upgrade_to==null:\par
+\tab\tab return\par
+\tab var weapon_remove:Array[Weapon]=Global.player.current_weapons.filter(func(w:Weapon):\par
+\tab\tab return w.data.item_name==temp_card.item_name).slice(0,2)\par
+\tab var card_remove:=weapon_container.get_children().filter(func(c:ItemCard):\par
+\tab\tab return c.item.item_name==temp_card.item_name).slice(0,2)\par
+\tab if weapon_remove.size()<2 or card_remove.size()<2:\par
+\tab\tab return\par
+\tab for weapon:Weapon in weapon_remove:\par
+\tab\tab Global.player.current_weapons.erase(weapon)\par
+\tab\tab Global.equiped_weapon.erase(weapon.data)\par
+\tab\tab weapon.queue_free()\par
+\tab for card:ItemCard in card_remove:\par
+\tab\tab card.queue_free()\par
+\tab var up_weapon:ItemWeapon = load(temp_card.upgrade_to.resource_path)\par
+\tab Global.player.equip_weapon(up_weapon)\par
+\tab Global.equiped_weapon.append(up_weapon)\par
+\tab var new_card:=creat_item_card()\par
+\tab weapon_container.add_child(new_card)\par
+\tab new_card.item=up_weapon\par
+\tab context_card=null\par
+\par
+func _on_sell_button_pressed() -> void:\par
+\tab if context_card==null:\par
+\tab\tab return\par
+\tab var clicked_weapon:=context_card.item as ItemWeapon\par
+\tab var coins:=int(clicked_weapon.item_cost*0.75)\par
+\tab var weapon_remove:Weapon=Global.player.current_weapons.filter(func(w:Weapon):\par
+\tab\tab return w.data.item_name==clicked_weapon.item_name).front()\par
+\tab if weapon_remove:\par
+\tab\tab Global.player.current_weapons.erase(weapon_remove)\par
+\tab\tab Global.equiped_weapon.erase(weapon_remove.data)\par
+\tab\tab weapon_remove.queue_free()\par
+\tab context_card.queue_free()\par
+\tab context_card=null\par
+\tab Global.coins+=coins\par
+\cf5\highlight2\'cd\'e6\'bc\'d2\'d1\'a1\'d4\'f1\'c3\'e6\'b0\'e5\'ca\'b5\'cf\'d6\'a3\'ba\cf6\highlight0\par
+\cf7\par
 \par
 \par
 \par
