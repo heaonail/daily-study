@@ -3836,7 +3836,19 @@ func apply_passive()->void:\par
 \tab if add_value!=0:\par
 \tab\tab Global.player.stats[add_stats]+=add_value\par
 \tab if remove_value!=0:\par
-\tab\tab Global.player.stats[remove_stats]-=remove_value\cf7\par
+\tab\tab Global.player.stats[remove_stats]-=remove_value\par
+\cf0\highlight2\'ce\'aaSprite2D\'bd\'da\'b5\'e3\'b4\'b4\'d4\'ec\'d7\'c5\'c9\'ab\'c6\'f7\'a3\'ac\'b4\'f8\'c0\'b4\'cc\'d8\'b1\'f0\'b5\'c4\'d0\'a7\'b9\'fb\'a3\'ac\'b9\'fd\'b3\'cc\'c8\'e7\'cf\'c2\'a3\'ba\par
+\cf3\highlight0\'b5\'e3\'bb\'f7Sprite2D\'bd\'da\'b5\'e3\'a3\'ac\'d3\'d2\'b2\'e0\'bc\'ec\'b2\'e9\'c3\'e6\'b0\'e5\emdash\emdash CanvasItem\emdash\emdash Material\'a3\'ac\'d0\'c2\'d4\'f6ShaderMaterial\emdash\emdash Shader\'a3\'ac\'d0\'c2\'d4\'f6New Shader\emdash\emdash\'b5\'e3\'bb\'f7\'d0\'c2\'d4\'f6\'b5\'c4New Shader\emdash\emdash\'d6\'d0\'bc\'e4\'b3\'f6\'cf\'d6Shader Editor\emdash\emdash\'b1\'e0\'bc\'ad\'cf\'e0\'b9\'d8\'d7\'c5\'c9\'ab\'c6\'f7\'b4\'fa\'c2\'eb\'a1\'a3\par
+\cf6\'b4\'fa\'c2\'eb\'cd\'f8\'c9\'cf\'b0\'c7\'b5\'c4\'a3\'ba\par
+shader_type canvas_item;\par
+uniform vec4 outline_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);\par
+uniform float outline_width : hint_range(0.0, 10.0) = 2.0;\par
+uniform float glow_intensity : hint_range(0.0, 5.0) = 1.5;\par
+void fragment() \{\par
+vec4 color = texture(TEXTURE, UV);\par
+vec2 size = TEXTURE_PIXEL_SIZE * outline_width;\par
+\}\par
+\cf7\'d5\'e2\'b6\'ce\'b4\'fa\'c2\'eb\'bf\'c9\'d2\'d4\'ca\'b9\'a3\'a8\'bc\'d9\'c9\'e8Sprite2D\'bd\'da\'b5\'e3\'ca\'c7\'ce\'e4\'c6\'f7\'a3\'a9\'ce\'e4\'c6\'f7\'d6\'dc\'b1\'df\'d3\'d0\'d2\'bb\'c2\'d6\'c0\'aa\'a3\'ac\'d4\'da\'bc\'ec\'b2\'e9\'c3\'e6\'b0\'e5\'d6\'d0\'b5\'c4\'d7\'c5\'c9\'ab\'c6\'f7\'bf\'c9\'d2\'d4\'b5\'f7\'d5\'fb\'b2\'bb\'cd\'ac\'b5\'c4\'d1\'d5\'c9\'ab\'a3\'ac\'b2\'bb\'cd\'ac\'b5\'c4\'d1\'d5\'c9\'ab\'b5\'c4\'d7\'c5\'c9\'ab\'c6\'f7\'d2\'b2\'bf\'c9\'d2\'d4\'c1\'ed\'cd\'e2\'b1\'a3\'b4\'e6\'a3\'ac\'b6\'d4\'d3\'a6\'b2\'bb\'cd\'ac\'b5\'c4\'c3\'fb\'d7\'d6\'a3\'ac\'b2\'bb\'cd\'ac\'b5\'c4\'c3\'fb\'d7\'d6\'bf\'c9\'d2\'d4\'ce\'aa\'b2\'bb\'cd\'ac\'b5\'c8\'bc\'b6\'b5\'c4\'ce\'e4\'c6\'f7\'cc\'ed\'bc\'d3\'b9\'e2\'bb\'b7\'d0\'a7\'b9\'fb\'a1\'a3\par
 \par
 \par
 \par
