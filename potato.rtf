@@ -31474,13 +31474,434 @@ func _on_buy_button_pressed() -> void:\par
 \cf3\tab if Global.coins>=shop_item.item_cost:\par
 \tab\tab Global.coins-=shop_item.item_cost\par
 \tab\tab item_purchased.emit(shop_item)\par
-\tab\tab queue_free()\cf6\highlight2\par
-\cf7\highlight0\par
+\tab\tab queue_free()\par
+\cf0\highlight2\'b4\'b4\'bd\'a8enemy\'c9\'fa\'b3\'c9\'ca\'b1\'b5\'c4\'b6\'af\'bb\'ad\'a3\'ac\'d2\'b2\'be\'cd\'ca\'c7\'d4\'daenemy\'b2\'fa\'c9\'fa\'c7\'b0\'a3\'ac\'cf\'c8\'b2\'a5\'b7\'c5\'d2\'bb\'b6\'ce\'b6\'af\'bb\'ad\'a3\'ba\par
+\cf3\highlight0 EnemySpawnEffect\'a3\'a8Sprite2D\'a3\'a9\par
+|__AnimationPlayer\par
+\'b4\'fa\'c2\'eb\'c8\'e7\'cf\'c2\'a3\'ba\par
+\cf6 extends Sprite2D\par
+class_name EnemySpawnEffect\par
+@onready var anim_player: AnimationPlayer = $AnimationPlayer\par
+\cf7\'d5\'e2\'b8\'f6\'d0\'c2\'bd\'a8\'b5\'c4\'b3\'a1\'be\'b0\'d2\'aa\'d4\'da\'b5\'d0\'c8\'cb\'b2\'fa\'c9\'fa\'b5\'c4\'ca\'b1\'ba\'f2\'b2\'a5\'b7\'c5\'a3\'ac\'d2\'b2\'be\'cd\'ca\'c7\'cb\'b5\'d2\'aa\'d4\'daSpawner\'c0\'e0\'d6\'d0spawn_enemy()\'ba\'af\'ca\'fd\'d6\'d0\'c9\'fa\'d0\'a7\'a1\'a3\par
+\cf3 extends Node2D\par
+class_name Spawner\par
+\par
+signal on_wave_completed\par
+\par
+@export var wave_data:Array[WaveData]\par
+@export var spawn_area:Vector2=Vector2(1100,600)\par
+@export var enemy_collection:Array[UnitStats]\par
+\par
+@onready var spawner_timer: Timer = $SpawnerTimer\par
+@onready var wave_timer: Timer = $WaveTimer\par
+\par
+@onready var wave_index_label: Label = $"../GameUI/WaveIndexLabel"\par
+@onready var wave_timer_label: Label = $"../GameUI/WaveTimerLabel"\par
+\par
+var wave_index:int=1\par
+var current_wave_data:WaveData\par
+var spawned_enemy:Array[EnemyTemplate]=[]\par
+\par
+#func _ready() -> void:\par
+\tab #start_wave()\par
+\par
+func _process(delta: float) -> void:\par
+\tab if Global.game_pause:return\par
+\tab wave_index_label.text=get_wave_index_text()\par
+\tab wave_timer_label.text=get_wave_time_text()\par
+\par
+func find_wave_data()->WaveData:\par
+\tab for wave in wave_data:\par
+\tab\tab if wave and wave.is_valid_index(wave_index):\par
+\tab\tab\tab return wave\par
+\tab return null\par
+\par
+func start_wave()->void:\par
+\tab current_wave_data=find_wave_data()\par
+\tab if not current_wave_data:\par
+\tab\tab spawner_timer.is_stopped()\par
+\tab\tab wave_timer.is_stopped()\par
+\tab\tab return\par
+\tab wave_timer.wait_time=current_wave_data.wave_time\par
+\tab wave_timer.start()\par
+\tab\par
+\tab set_spawn_timer()\par
+\par
+func set_spawn_timer()->void:\par
+\tab match current_wave_data.spawn_type:\par
+\tab\tab WaveData.SpawnType.FIXED:\par
+\tab\tab\tab spawner_timer.wait_time=current_wave_data.spawn_time_fixed\par
+\tab\tab WaveData.SpawnType.RANDOM:\par
+\tab\tab\tab spawner_timer.wait_time=randf_range(current_wave_data.spawn_time_min,current_wave_data.spawn_time_max)\par
+\tab\tab\par
+\tab if spawner_timer.is_stopped():\par
+\tab\tab spawner_timer.start()\par
+\par
+func spawn_enemy()->void:\par
+\tab var enemy_scene:=current_wave_data.get_random_unit_scene() as PackedScene\par
+\tab if enemy_scene:\par
+\tab\tab\par
+\tab\cf7\tab #var pos:=get_random_location()\par
+\tab\tab #var spawn_effect:EnemySpawnEffect\par
+\tab\tab #spawn_effect.anim_player.play("spawn")\par
+\tab\tab #await  spawn_effect.anim_player.stop()\par
+\'d2\'d4\'c9\'cf\'ca\'c7\'c0\'ed\'bd\'e2\'b4\'ed\'ce\'f3\'b5\'c4\'b4\'fa\'c2\'eb\'a3\'ac\'d7\'d4\'d2\'d4\'ce\'aa\'bf\'c9\'d2\'d4\'cd\'a8\'b9\'fd\'d0\'c2\'bd\'a8var spawn_effect:EnemySpawnEffect\'c0\'b4\'b2\'a5\'b7\'c5\'b6\'af\'bb\'ad\'a3\'ac\'ca\'b5\'bc\'ca\'ca\'c7\'b4\'ed\'b5\'c4\'a1\'a3\'d2\'f2\'ce\'aaEnemySpawnEffect\'ca\'c7\'d2\'bb\'b8\'f6tscn\'ce\'c4\'bc\'fe\'a3\'ac\'cb\'fc\'d0\'e8\'d2\'aa\'ca\'b5\'c0\'fd\'bb\'af\'a3\'acadd_child()\'b5\'bd\'bd\'da\'b5\'e3\'c9\'cf\'a3\'ac\'c8\'bb\'ba\'f3\'b2\'a5\'b7\'c5\'a3\'ac\'cd\'ea\'c1\'cb\'a3\'acqueue_free()\'a1\'a3\'d5\'e2\'be\'cd\'d0\'e8\'d2\'aa\'bd\'ab\'b8\'c3tscn\'b7\'c5\'b5\'bdglobal\'d6\'d0\'c8\'a5\'a3\'ac\'cb\'e6\'ca\'b1\'cb\'e6\'b5\'d8\'bf\'c9\'d2\'d4\'b5\'f7\'d3\'c3\'a1\'a3\par
+\cf6\tab\tab\tab var spawn_effect:=Global.ENEMY_SPAWN_EFFECT_SCENE.instantiate() as EnemySpawnEffect\par
+\tab\tab get_parent().add_child(spawn_effect)\par
+\cf7\'d2\'aa\'bc\'d3\'d2\'bb\'b8\'f6get_parent()\'bd\'ab\'bd\'da\'b5\'e3\'b9\'d2\'d4\'daMain\'b3\'a1\'be\'b0\'d6\'d0\'a3\'ac\'b6\'f8\'b2\'bb\'ca\'c7Spawner\'c9\'cf\cf6\par
+\tab\tab spawn_effect.global_position=pos\par
+\tab\tab spawn_effect.anim_player.play("spawn")\par
+\tab\cf7\tab #await  spawn_effect.anim_player.stop()_____wrong\cf6\par
+\tab\tab await  spawn_effect.anim_player.animation_finished\par
+\cf7\'b2\'bb\'ca\'c7.stop()\'b6\'fe\'ca\'aeanimation_finished\'a3\'acstop\'ca\'c7\'cd\'a3\'d6\'b9\'b5\'b1\'c7\'b0\'b2\'a5\'b7\'c5\'a3\'acfinish\'b2\'c5\'ca\'c7\'b5\'c8\'b4\'fd\'b2\'a5\'b7\'c5\'bd\'e1\'ca\'f8\cf6\par
+\tab\tab spawn_effect.queue_free()\cf7\par
+\tab\tab\cf3 var enemy_instance:=enemy_scene.instantiate() as EnemyTemplate\cf6\par
+\cf3\tab\tab enemy_instance.global_position=pos\par
+\tab\tab get_tree().current_scene.add_child(enemy_instance)\par
+\tab\tab spawned_enemy.append(enemy_instance)\par
+\tab\par
+\tab set_spawn_timer()\par
+\par
+func _on_spawner_timer_timeout() -> void:\par
+\tab if not current_wave_data or wave_timer.is_stopped():\par
+\tab\tab spawner_timer.stop()\par
+\tab\tab return\par
+\tab spawn_enemy()\par
+\par
+func get_wave_index_text()->String:\par
+\tab return "Wave %s" % wave_index\par
+\par
+func get_wave_time_text()->String:\par
+\tab return str(int(wave_timer.time_left))\par
+\par
+func get_random_location()->Vector2:\par
+\tab var vector:=Vector2.ZERO\par
+\tab vector.x=randf_range(0,spawn_area.x)\par
+\tab vector.y=randf_range(0,spawn_area.y)\par
+\tab return vector\par
+\par
+func _on_wave_timer_timeout() -> void:\par
+\tab Global.get_harvest_coins()\par
+\tab spawner_timer.stop()\par
+\tab on_wave_completed.emit()\par
+\tab #print("wave-timer timeout")\par
+\tab clear_enemy()\par
+\tab update_enemy_new_wave()\par
+\par
+func update_enemy_new_wave()->void:\par
+\tab for stats:UnitStats in enemy_collection:\par
+\tab\tab stats.health+=stats.health_increase_per_wave\par
+\tab\tab stats.damage+=stats.damage_increase_per_wave\par
+\par
+func clear_enemy()->void:\par
+\tab Global.game_pause=true\par
+\tab if spawned_enemy.size()>0:\par
+\tab\tab for enemy in spawned_enemy:\par
+\tab\tab\tab if is_instance_valid(enemy):\par
+\tab\tab\tab\tab enemy.destory_enemy()\par
+\tab spawned_enemy.clear()\cf6\highlight2\par
+\highlight0\'d0\'de\'d5\'fd\'d3\'ce\'cd\'e6\'b9\'fd\'b3\'cc\'d6\'d0\'a3\'ac\'cc\'ed\'bc\'d3\'d0\'c2\'ce\'e4\'c6\'f7\'ba\'f3\'a3\'ac\'d7\'dc\'ca\'c7\'bb\'e1\'b3\'f6\'cf\'d6\'d7\'f8\'b1\'ea\'bb\'d8\'b5\'bdVector2.ZERO\'b5\'c4\'cf\'d6\'cf\'f3\'a3\'ac\'c7\'a7\'ce\'ca\'cb\'b5\'d4\'ad\'d2\'f2\'bf\'c9\'c4\'dc\'ca\'c7\'a3\'ba1.\'b5\'b1\'d2\'bb\'b8\'f6\'bd\'da\'b5\'e3\'bb\'b9\'c3\'bb\'d3\'d0\'b1\'bb\'cc\'ed\'bc\'d3\'b5\'bd\'b3\'a1\'be\'b0\'ca\'f7\'a3\'a8Scene Tree\'a3\'a9\'d6\'d0\'ca\'b1\'a3\'ac\'cb\'fc\'ca\'c7\'c3\'bb\'d3\'d0\ldblquote\'c8\'ab\'be\'d6\'d7\'f8\'b1\'ea\'a3\'a8Global Position\'a3\'a9\rdblquote\'b8\'c5\'c4\'ee\'b5\'c4\'a1\'a3\par
+2.\'d4\'da WeaponContainer \'b5\'c4 _ready \'d6\'d0\'a3\'ac\'c4\'e3\'bb\'f1\'c8\'a1\'b5\'c4\'ca\'c7 child.global_position\'c8\'e7\'b9\'fb WeaponContainer \'ca\'c7 Player \'b5\'c4\'d7\'d3\'bd\'da\'b5\'e3\'a3\'ac\'b6\'f8 Player \'d4\'da\'c9\'fa\'b3\'c9\'ca\'b1\'ce\'bb\'d3\'da (0,0)\'a3\'ac\'c4\'c7\'c3\'b4\'d5\'e2\'d0\'a9 Marker2D \'b5\'c4 global_position \'be\'cd\'bb\'e1\'b1\'bb\'cb\'c0\'cb\'c0\'bc\'c7\'c2\'bc\'ce\'aa (0,0) \'b8\'bd\'bd\'fc\'b5\'c4\'d6\'b5\'a1\'a3\'b5\'b1 Player \'d2\'c6\'b6\'af\'ba\'f3\'a3\'ac\'c4\'e3\'d2\'c0\'c8\'bb\'b0\'d1\'ce\'e4\'c6\'f7\'c7\'bf\'d0\'d0\'b7\'c5\'b5\'bd\'b5\'b1\'b3\'f5\'bc\'c7\'c2\'bc\'b5\'c4 (0,0) \'d5\'e2\'b8\'f6\'c8\'ab\'be\'d6\'d7\'f8\'b1\'ea\'c9\'cf\'a3\'ac\'ce\'e4\'c6\'f7\'d7\'d4\'c8\'bb\'be\'cd\'b2\'bb\'bb\'e1\'b8\'fa\'d7\'c5\'cd\'e6\'bc\'d2\'c1\'cb\'a1\'a3\cf7\'b8\'f6\'c8\'cb\'bb\'b3\'d2\'c9\'ca\'c7\'b5\'da\'b6\'fe\'b8\'f6\'d4\'ad\'d2\'f2\'a3\'ac\'b5\'c4\'c8\'b7\'c8\'e7\'c7\'a7\'ce\'ca\'cb\'f9\'cb\'b5\'a1\'a3\cf6\par
+\cf3 extends Node2D\par
+class_name WeaponContainer\par
+var weapon_position:Array[Vector2]\par
+\cf6 func get_next_available_slot() -> Marker2D:\par
+\tab for child in self.get_children():\par
+\tab\tab if child is Marker2D and child.get_child_count() == 0:\par
+\tab\cf7 ==0\'b4\'fa\'b1\'ed\'b2\'e5\'b2\'db\'ca\'c7\'bf\'d5\'b5\'c4\'a3\'ac\'bf\'c9\'d2\'d4\'d3\'c3\cf6\par
+\tab\tab\tab return child\par
+\tab return null\cf3\par
+\cf7 #func _ready() -> void:\par
+\tab #for child:Marker2D in self.get_children():\par
+\tab\tab #weapon_position.append(child.global_position)\par
+#\par
+#func update_weapon_position(weapons:Array[Weapon])->void:\par
+\tab #var count:int=weapons.size()\par
+\tab #if count>weapon_position.size():\par
+\tab\tab #return\par
+\tab #for i in count:\par
+\tab\tab #weapons[i].global_position=weapon_position[i]\par
+\cf0\'b8\'fc\'d0\'c2player\'c0\'e0\'b5\'c4\'b4\'fa\'c2\'eb\'a3\'ba\par
+\cf3 extends Unit\par
+class_name PlayerTemplate\par
+\par
+var move_speed:int=200\par
+var move_direction:Vector2=Vector2.ZERO\par
+var dash_duration:float=0.5\par
+var dash_cooldown:float=5\par
+var dash_multiple:float=2\par
+var can_dash:bool=true\par
+var is_dashing:bool=false\par
+var trail_array:Array[Vector2]=[]\par
+\par
+var current_weapons:Array[Weapon]=[]\par
+@onready var weapon_container: WeaponContainer = $WeaponContainer\par
+\par
+@onready var trail: Line2D = $Trail\par
+@onready var dash_timer: Timer = $DashTimer\par
+@onready var dash_cooldown_timer: Timer = $DashCooldownTimer\par
+\par
+func _ready() -> void:\par
+\tab super._ready()\par
+\tab move_speed=stats.speed\par
+\tab dash_timer.timeout.connect(dash_timer_timeout)\par
+\tab dash_cooldown_timer.timeout.connect(dash_cooldown_timer_timeout)\par
+\tab\par
+\tab #equip_weapon(preload("uid://ojova7xjauvd"))\par
+\tab #equip_weapon(preload("uid://cixvftfjvjxsg"))\par
 \par
 \par
+func _physics_process(delta: float) -> void:\par
+\tab if Global.game_pause:return\par
+\tab velocity=move_direction*move_speed\par
+\tab if is_dashing:\par
+\tab\tab trail_array.append(global_position)\par
+\tab\tab if trail_array.size()>8:\par
+\tab\tab\tab trail_array.pop_front()\par
+\tab\tab trail.global_position=to_local(global_position)\par
+\tab\tab trail.points=trail_array\par
+\tab\par
+\tab move_and_slide()\par
 \par
 \par
+func _input(event: InputEvent) -> void:\par
+\tab move_direction=Input.get_vector("move_left","move_right","move_up","move_down")\par
+\tab if move_direction.x>0:\par
+\tab\tab animate.flip_h=false\par
+\tab elif move_direction.x<0:\par
+\tab\tab animate.flip_h=true\par
+\tab if move_direction.length()==0:\par
+\tab\tab animate.play("idle")\par
+\tab else :\par
+\tab\tab animate.play("run")\par
+\tab if Input.is_action_just_pressed("dash"):\par
+\tab\tab dash()\par
 \par
+func dash()->void:\par
+\tab if can_dash and is_dashing==false:\par
+\tab\tab move_speed*=dash_multiple\par
+\tab\tab modulate.a=0.5\par
+\tab\tab collision.disabled=true\par
+\tab\tab dash_timer.start(dash_duration)\par
+\tab\tab dash_cooldown_timer.start(dash_cooldown)\par
+\tab\tab can_dash=false\par
+\tab\tab is_dashing=true\par
+\tab\tab trail.visible=true\par
+\par
+func dash_timer_timeout()->void:\par
+\tab move_speed/=dash_multiple\par
+\tab collision.disabled=false\par
+\tab is_dashing=false\par
+\tab modulate.a=1\par
+\tab trail_array.clear()\par
+\tab trail.visible=false\par
+\par
+func dash_cooldown_timer_timeout()->void:\par
+\tab can_dash=true\par
+\par
+func equip_weapon(entity:ItemWeapon)->void:\par
+\tab var weapon=entity.scene.instantiate() as Weapon\par
+\tab\cf6 var slot:=weapon_container.get_next_available_slot()\par
+\tab if not slot:return\par
+\tab slot.add_child(weapon)\par
+\tab weapon.position=Vector2.ZERO\par
+\cf7\'d5\'e2\'d2\'bb\'d0\'d0\'b5\'c4\'d2\'e2\'d2\'e5\'ca\'c7\'a3\'baPosition, relative to the node's parent\'a1\'a3Position\'b8\'c4\'ce\'aa0\'a3\'ac\'bb\'e1\'ca\'b9\'d7\'d3\'bd\'da\'b5\'e3\'b5\'c4\'d7\'f8\'b1\'ea\'b8\'fa\'cb\'e6\'b8\'b8\'bd\'da\'b5\'e3\'a3\'ac\'b2\'bb\'bb\'e1\'d4\'da\'b8\'b8\'bd\'da\'b5\'e3\'c4\'da\'b2\'bf\'c6\'ab\'d2\'c6\'a3\'ac\'d5\'e2\'c0\'ef\'be\'cd\'ca\'c7player\cf6\par
+\cf3\tab weapon.set_weapon(entity)\par
+\tab current_weapons.append(weapon)\par
+\tab #weapon_container.update_weapon_position(current_weapons)\par
+\par
+func update_player_new_wave()->void:\par
+\tab stats.max_health+=stats.health_increase_per_wave\par
+\tab stats.health=health.current_health\par
+\tab #stats.damage+=stats.damage_increase_per_wave\par
+\tab health.initial(stats)\par
+\par
+func _on_hp_regen_timer_timeout() -> void:\par
+\tab if health.current_health<=0:\par
+\tab\tab return\par
+\tab if health.current_health<stats.max_health and Global.game_pause==false:\par
+\tab\tab var h:=stats.hp_regen\par
+\tab\tab health.heal(h)\par
+\tab\tab Global.heal_text.emit(self,h)\cf7\par
+\cf5\highlight2\'d2\'f4\'d0\'a7\'cf\'e0\'b9\'d8\'c9\'e8\'d6\'c3\'a3\'ba\par
+\cf6\highlight0\'d2\'f4\'d0\'a7\'ca\'c7\'d7\'d4\'b6\'af\'bc\'d3\'d4\'d8\'b5\'c4\'a3\'ac\'d2\'aa\'d4\'da\'b8\'f7\'b4\'a6\'b5\'f7\'d3\'c3\'a3\'ac\cf7\'d7\'d4\'c8\'bb\'d2\'b2\'d4\'daglobal\'c0\'ef\'c3\'e6\cf6\'a3\'ac\'cf\'eb\'b4\'ed\'c1\'cb\'a3\'ac\'c6\'e4\'ca\'b5\'b2\'bb\'d4\'daglobal\'d6\'d0\'a3\'ac\'bd\'cc\'b3\'cc\'bd\'e2\'ca\'cd\'c1\'cb\'a3\'ac\'ca\'c7\'ce\'aa\'c1\'cb\'bd\'ab\'b6\'e0\'b8\'f6\'bd\'da\'b5\'e3\'d7\'f6\'ce\'aa\'d7\'d3\'bd\'da\'b5\'e3\'cc\'ed\'bc\'d3\'b5\'bd\'d2\'f4\'d0\'a7\'bd\'da\'b5\'e3\'c9\'cf\'a3\'ac\'cb\'f9\'d2\'d4\'d7\'f6\'b3\'c9\'c1\'cb\'d2\'bb\'b8\'f6\'d2\'f4\'d0\'a7tscn\'a3\'ac\'b6\'f8\'b2\'bb\'ca\'c7\'ca\'b9\'d3\'c3global\'b5\'a5\'b8\'f6\'bd\'c5\'b1\'be\'a1\'a3\par
+\cf3 SoundManager(Node)\par
+|__AudioStreamPlayer\par
+|__AudioStreamPlayer1\par
+|__AudioStreamPlayer2\par
+|__AudioStreamPlayer3\par
+|__AudioStreamPlayer4\par
+\cf6\'d4\'daProject\emdash\emdash Project Settings\emdash\emdash Globals\emdash\emdash Path\'a3\'basound_manager.tscn\emdash\emdash Add\par
+\'bd\'absound_manager.tscn\'cc\'ed\'bc\'d3\'b5\'bdGlobal\'d6\'d0\'c8\'a5\'a3\'ac\'ca\'b9\'c8\'ab\'be\'d6\'c9\'fa\'d0\'a7\'a1\'a3\cf7\'d5\'e2\'c0\'ef\'d2\'b2\'d6\'aa\'b5\'c0\'c1\'cb\'a3\'ac\'b2\'bb\'d6\'b9gd\'bd\'c5\'b1\'be\'bf\'c9\'d2\'d4\'c8\'ab\'be\'d6\'c9\'fa\'d0\'a7\'a3\'actscn\'d2\'b2\'bf\'c9\'d2\'d4\'a1\'a3\par
+\cf5\'d0\'c2\'bd\'a8\'d2\'f4\'c6\'b5\'d7\'dc\'cf\'df\'a3\'ac\'b4\'fa\'c2\'eb\'b1\'e0\'bc\'ad\'c3\'e6\'b0\'e5\'d7\'ee\'cf\'c2\'b7\'bdAudio\'d1\'a1\'cf\'ee\'a3\'ac\'b5\'e3\'bf\'aa\emdash\emdash Add Bus(\'cc\'ed\'bc\'d32\'d7\'dc\'cf\'df)\emdash\emdash\'d2\'bb\'b8\'f6\'c3\'fc\'c3\'fb\'ce\'aaMusic\'d7\'f7\'ce\'aa\'b1\'b3\'be\'b0\'d2\'f4\'c0\'d6\'a3\'ac\'d2\'bb\'b8\'f6\'ce\'aaSFX\'a3\'ac\'b8\'f7\'d6\'d6\'d2\'f4\'d0\'a7\'a1\'a3\par
+\'d1\'a1\'d6\'d0\'c9\'cf\'b1\'df\'b5\'c4\'cb\'f9\'d3\'d0AudioStreamPlayer\'bd\'da\'b5\'e3\'a3\'ac\'d3\'d2\'b2\'e0\'bc\'ec\'b2\'e9\'c3\'e6\'b0\'e5\'d6\'d0\'a3\'acBus\'d1\'a1\'cf\'ee\'bf\'a8SFX(\'b8\'d5\'bd\'a8\'b5\'c4)\par
+\cf6 extends Node\par
+enum Sound\{\par
+\tab ENEMY_HIT,\par
+\tab FIRE,\par
+\tab UI\par
+\}\par
+\cf7\'bd\'a8\'c1\'a2\'d2\'bb\'b8\'f6\'c3\'b6\'be\'d9\'d7\'f7\'ce\'aa\ldblquote\'bc\'fc\rdblquote\'a3\'ac\'c8\'bb\'ba\'f3\'d0\'c2\'bd\'a8\'d2\'bb\'b8\'f6dictionary\'a3\'ac\'b2\'bb\'cd\'ac\'b5\'c4\'d2\'f4\'c6\'b5\'ce\'c4\'bc\'fe\'cd\'cf\'bd\'f8\'c0\'b4\'a3\'ac\'d7\'f7\'ce\'aa\'d6\'b5\'a1\'a3\cf6\'d5\'e2\'c0\'ef\'d3\'d0\'c1\'bd\'b8\'f6\'b3\'a3\'bc\'fb\'b5\'c4\'ca\'fd\'be\'dd\'b8\'f1\'ca\'bd\'a3\'acenum\'c3\'b6\'be\'d9\'ba\'cddictionary\'d7\'d6\'b5\'e4\'a3\'ac\'c3\'b6\'be\'d9\'b6\'a8\'d2\'e5\'ca\'c7enum name\{\}\'a3\'ac\'d7\'d6\'b5\'e4\'b6\'a8\'d2\'e5\'d4\'f2\'ca\'c7const\'bb\'f2var name\'a3\'baDictionary[key,value]=\{\}\par
+var sound_dictionary:Dictionary[Sound,Resource]=\{\par
+\tab Sound.ENEMY_HIT:preload("uid://b70s1eac0naab"),\par
+\tab Sound.FIRE:preload("uid://d03r25eukba74"),\par
+\tab Sound.UI:preload("uid://dtrh7qipwvmb4")\par
+\}\cf7\par
+\'d5\'e2\'b8\'f6\'bc\'fc\'d6\'b5\'b6\'d4\'b5\'c4\'d7\'e9\'ba\'cf\'b1\'c8\'bd\'cf\'b7\'bd\'b1\'e3\'a3\'ac\'b5\'b1\'cf\'eb\'d4\'f6\'bc\'d3\'d2\'f4\'d0\'a7\'ca\'b1\'a3\'ac\'d4\'da\'c3\'b6\'be\'d9\'d6\'d0\'cc\'ed\'bc\'d3\'c3\'fb\'b3\'c6\'a3\'ac\'d4\'da\'d7\'d6\'b5\'e4\'d6\'d0\'cc\'ed\'bc\'d3\'d2\'f4\'d0\'a7\'c2\'b7\'be\'b6\'bc\'b4\'bf\'c9\'a1\'a3\par
+\cf6 @export var stream_player:Array[AudioStreamPlayer]\par
+\cf7\'bd\'ab\'cb\'f9\'d3\'d0AudioStreamPlayer\'bd\'da\'b5\'e3\'a3\'ac\'cc\'ed\'bc\'d3\'b5\'bdstream_player\cf6\par
+func get_free_stream_player()->AudioStreamPlayer:\par
+\tab for stream in stream_player:\par
+\tab\tab if not stream.playing:\par
+\tab\tab\tab return stream\par
+\tab return null\par
+\cf7 for\'d1\'ad\'bb\'b7\'a3\'ac\'b7\'b5\'bb\'d8\'d2\'bb\'b8\'f6\'bf\'d5\'cf\'d0\'b5\'c4AudioStreamPlayer\'b2\'a5\'b7\'c5\'c6\'f7\par
+\cf6 func play_sound(type:int)->void:\par
+\tab var stream:=get_free_stream_player()\par
+\tab if not stream:return\par
+\cf7\'bb\'f1\'c8\'a1\'bf\'d5\'cf\'d0\'b5\'c4streamAudioPlayer\'a3\'ac\'c3\'bb\'d3\'d0\'be\'cd\'b7\'b5\'bb\'d8\'a1\'a3\cf6\par
+\tab var audio:=sound_dictionary[type]\par
+\cf7\'b8\'f9\'be\'ddtype\'d6\'b5\'bb\'f1\'c8\'a1\'b6\'d4\'d3\'a6\'b5\'c4\'d2\'f4\'d0\'a7\cf6\par
+\tab stream.stream=audio\par
+\cf7\'c8\'c3\'bb\'f1\'c8\'a1\'b5\'c4StreamAudioPlayer\'b5\'c4stream\'ce\'aa\'bb\'f1\'c8\'a1\'b5\'c4\'d2\'f4\'d0\'a7audio\cf6\par
+\tab stream.pitch_scale=randf_range(0.8,1.3)\par
+\cf7\'d2\'f4\'c1\'bf\'b7\'b6\'ce\'a7\cf6\par
+\tab stream.play()\par
+\par
+\cf0\'d3\'a6\'d3\'c3\'d5\'e2\'b8\'f6SoundManager\'a3\'ac\'d3\'c9\'d3\'daplayer\'ba\'cdenemy\'bd\'d3\'b4\'a5\'ca\'b1\'bb\'e1\'b7\'a2\'c9\'fa\'b9\'a5\'bb\'f7\'d0\'d0\'ce\'aa\'a3\'ac\'c4\'c7\'c3\'b4\'be\'cd\'bf\'c9\'d2\'d4\'d4\'dahitbox\'d6\'d0\'b5\'c4\'c7\'f8\'d3\'f2\'c5\'f6\'d7\'b2\'ba\'af\'ca\'fd\'d6\'d0\'ca\'b9\'d3\'c3\'b8\'c3\'b6\'d4\'d3\'a6\'d2\'f4\'d0\'a7\par
+\cf3 extends Area2D\par
+class_name Hitbox\par
+\par
+var damage:int=1\par
+var critical:bool=false\par
+var knock_back:int=1\par
+var user:Unit\par
+\par
+signal hit(area:Hurtbox)\par
+\par
+func _ready() -> void:\par
+\tab area_entered.connect(on_hurtbox_entered)\par
+\par
+func disable()->void:\par
+\tab set_deferred("monitorable",false)\par
+\tab set_deferred("monitoring",false)\par
+\par
+func enable()->void:\par
+\tab set_deferred("monitorable",true)\par
+\tab set_deferred("monitoring",true)\par
+\par
+func initial(tdamage:int,tcritical:bool,tknockback:int,tuser:Unit)->void:\par
+\tab damage=tdamage\par
+\tab critical=tcritical\par
+\tab knock_back=tknockback\par
+\tab user=tuser\par
+\par
+func on_hurtbox_entered(area:Area2D)->void:\par
+\tab if area is Hurtbox:\par
+\tab\tab hit.emit(area)\par
+\tab\tab\cf6 SoundManager.play_sound(SoundManager.Sound.ENEMY_HIT)\par
+\cf0\highlight2\'d4\'da\'c9\'fa\'b3\'c9\'cd\'b6\'c9\'e4\'ce\'ef\'b5\'c4\'b5\'d8\'b7\'bd\'bf\'c9\'d2\'d4\'d3\'c3\'bf\'aa\'c7\'b9\'d2\'f4\'d0\'a7\'a3\'ba\par
+\cf3\highlight0 extends WeaponBehavior\par
+class_name WeaponRangeBehavior\par
+\par
+@onready var muzzle: Marker2D = $"../Sprite/Muzzle"\par
+\par
+func execute_attack()->void:\par
+\tab weapon.is_attacking=true\par
+\tab creat_projectile()\par
+\tab\cf6 SoundManager.play_sound(SoundManager.Sound.FIRE)\cf3\par
+\tab var tween:=create_tween()\par
+\tab var recoil_position:=Vector2(weapon.attack_start_position.x-weapon.data.stats.recoil,weapon.attack_start_position.y)\par
+\tab tween.tween_property(weapon.sprite,"position",recoil_position,weapon.data.stats.recoil_duration)\par
+\tab tween.tween_property(weapon.sprite,"position",weapon.attack_start_position,weapon.data.stats.recoil_duration)\par
+\tab leech()\par
+\tab await tween.finished\par
+\tab weapon.is_attacking=false\par
+\tab critical=false\par
+\par
+func creat_projectile()->void:\par
+\tab var projectile:=weapon.data.stats.projectile_scene.instantiate() as Projectile\par
+\tab get_tree().current_scene.add_child(projectile)\par
+\tab projectile.global_position=muzzle.global_position\par
+\tab var velocity:=Vector2.RIGHT.rotated(weapon.rotation)*weapon.data.stats.projectile_speed\par
+\tab projectile.initial_projectile(velocity,base_damage(),critical,weapon.data.stats.knock_back,weapon.get_parent())\cf6\par
+\cf5\highlight2\'d7\'f7\'d3\'c3\'d3\'daUI\'c9\'cf\'ca\'b1\'a3\'ba\par
+\cf3\highlight0 extends Panel\par
+class_name UpgradeCard\par
+@export var item_upgrade_data:ItemUpgrade:set=_set_data\par
+@onready var item_icon: TextureRect = $MarginContainer/Control/ItemIcon\par
+@onready var item_name: Label = $MarginContainer/Control/ItemName\par
+@onready var item_description: Label = $MarginContainer/Control/ItemDescription\par
+func _set_data(value:ItemUpgrade)->void:\par
+\tab item_upgrade_data=value\par
+\tab item_icon.texture=item_upgrade_data.item_icon\par
+\tab item_name.text=item_upgrade_data.item_name\par
+\tab item_description.text=item_upgrade_data.description\par
+\tab var tier:=item_upgrade_data.item_tier as Global.GlobalUpgradeTier\par
+\tab var style:=Global.get_tier_style(tier)\par
+\tab add_theme_stylebox_override("panel",style)\par
+func _on_custom_button_pressed() -> void:\par
+\tab if item_upgrade_data and is_instance_valid(Global.player):\par
+\tab\tab\cf6 SoundManager.play_sound(SoundManager.Sound.UI)\cf3\par
+\tab\tab item_upgrade_data.applay_upgrade()\par
+\tab\tab Global.on_upgrade_card_selected.emit()\par
+\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\par
+extends Panel\par
+class_name ShopCard\par
+\par
+@export var shop_item:Item :set=_set_shop_item\par
+@onready var item_icon: TextureRect = %ItemIcon\par
+@onready var item_name: Label = %ItemName\par
+@onready var item_type: Label = %ItemType\par
+@onready var item_description: RichTextLabel = %ItemDescription\par
+@onready var price: Label = %Price\par
+\par
+signal item_purchased(item:Item)\par
+\par
+func _set_shop_item(value:Item)->void:\par
+\tab shop_item=value\par
+\tab item_icon.texture=value.item_icon\par
+\tab item_name.text=value.item_name\par
+\tab #item_type.text=str(value.item_type)\par
+\tab item_type.text=Item.ItemType.keys()[value.item_type]\par
+\tab item_description.text=value.item_description()\par
+\tab price.text=str(value.item_cost)\par
+\tab var style:=Global.get_tier_style(value.item_tier as Global.GlobalUpgradeTier)\par
+\tab add_theme_stylebox_override("panel",style)\par
+\par
+func _on_buy_button_pressed() -> void:\par
+\tab\cf6 SoundManager.play_sound(SoundManager.Sound.UI)\cf3\par
+\tab if Global.equiped_weapon.size()>=6:return\par
+\tab if Global.coins>=shop_item.item_cost:\par
+\tab\tab Global.coins-=shop_item.item_cost\par
+\tab\tab item_purchased.emit(shop_item)\par
+\tab\tab queue_free()\par
+\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\par
+extends Button\par
+class_name ItemCard\par
+signal item_card_selected(card:ItemCard)\par
+@export var item:Item:set=_set_item\par
+@onready var item_icon: TextureRect = $ItemIcon\par
+func _set_item(value:Item)->void:\par
+\tab item=value\par
+\tab item_icon.texture=item.item_icon\par
+\tab var style:=Global.get_tier_style(value.item_tier as Global.GlobalUpgradeTier)\par
+\tab add_theme_stylebox_override("normal",style)\par
+func _on_pressed() -> void:\par
+\tab\cf6 SoundManager.play_sound(SoundManager.Sound.UI)\cf3\par
+\tab if item.item_type==Item.ItemType.WEAPON:\par
+\tab\tab #print(item.item_type)\par
+\tab\tab Global.selected_weapon=item as ItemWeapon\par
+\tab\tab item_card_selected.emit(self)\par
+\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\emdash\par
+extends Button\par
+class_name SelectionCard\par
+func set_icon(texture:Texture2D)->void:\par
+\tab icon=texture\par
+\cf6 func _on_pressed() -> void:\par
+\tab SoundManager.play_sound(SoundManager.Sound.UI)\par
+\'b2\'bb\'d5\'b3\'cc\'f9\'c1\'cb\'a3\'ac\'ba\'c3\'b6\'e0\'b4\'f8\'d3\'d0pressed\'b5\'c4\'b5\'d8\'b7\'bd\'b6\'bc\'bf\'c9\'d2\'d4\'b8\'b4\'d6\'c6\'a3\'baSoundManager.play_sound(SoundManager.Sound.UI)\par
+\cf7\par
 \par
 \cf6\par
 }

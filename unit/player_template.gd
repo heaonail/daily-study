@@ -24,7 +24,7 @@ func _ready() -> void:
 	dash_cooldown_timer.timeout.connect(dash_cooldown_timer_timeout)
 	
 	#equip_weapon(preload("uid://ojova7xjauvd"))
-	equip_weapon(preload("uid://cixvftfjvjxsg"))
+	#equip_weapon(preload("uid://cixvftfjvjxsg"))
 
 
 func _physics_process(delta: float) -> void:
@@ -77,10 +77,13 @@ func dash_cooldown_timer_timeout()->void:
 
 func equip_weapon(entity:ItemWeapon)->void:
 	var weapon=entity.scene.instantiate() as Weapon
-	add_child(weapon)
+	var slot:=weapon_container.get_next_available_slot()
+	if not slot:return
+	slot.add_child(weapon)
+	weapon.position=Vector2.ZERO
 	weapon.set_weapon(entity)
 	current_weapons.append(weapon)
-	weapon_container.update_weapon_position(current_weapons)
+	#weapon_container.update_weapon_position(current_weapons)
 
 func update_player_new_wave()->void:
 	stats.max_health+=stats.health_increase_per_wave

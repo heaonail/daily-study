@@ -11,6 +11,7 @@ func _set_item(value:Item)->void:
 	add_theme_stylebox_override("normal",style)
 
 func _on_pressed() -> void:
+	SoundManager.play_sound(SoundManager.Sound.UI)
 	if item.item_type==Item.ItemType.WEAPON:
 		#print(item.item_type)
 		Global.selected_weapon=item as ItemWeapon

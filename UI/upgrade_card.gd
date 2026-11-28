@@ -19,5 +19,6 @@ func _set_data(value:ItemUpgrade)->void:
 
 func _on_custom_button_pressed() -> void:
 	if item_upgrade_data and is_instance_valid(Global.player):
+		SoundManager.play_sound(SoundManager.Sound.UI)
 		item_upgrade_data.applay_upgrade()
 		Global.on_upgrade_card_selected.emit()

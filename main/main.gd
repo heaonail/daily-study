@@ -81,6 +81,7 @@ func clear_coins()->void:
 				var temp:=coin as Coin
 				temp.set_collect_target(target_pos)
 	coin_list.clear()
+	spawner.clear_enemy()
 
 
 func _on_selection_panel_on_selection_completed() -> void:

@@ -28,3 +28,4 @@ func initial(tdamage:int,tcritical:bool,tknockback:int,tuser:Unit)->void:
 func on_hurtbox_entered(area:Area2D)->void:
 	if area is Hurtbox:
 		hit.emit(area)
+	SoundManager.play_sound(SoundManager.Sound.ENEMY_HIT)

@@ -6,6 +6,7 @@ class_name WeaponRangeBehavior
 func execute_attack()->void:
 	weapon.is_attacking=true
 	creat_projectile()
+	SoundManager.play_sound(SoundManager.Sound.FIRE)
 	var tween:=create_tween()
 	var recoil_position:=Vector2(weapon.attack_start_position.x-weapon.data.stats.recoil,weapon.attack_start_position.y)
 	tween.tween_property(weapon.sprite,"position",recoil_position,weapon.data.stats.recoil_duration)

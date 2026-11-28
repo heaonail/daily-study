@@ -22,6 +22,7 @@ func _set_shop_item(value:Item)->void:
 	add_theme_stylebox_override("panel",style)
 
 func _on_buy_button_pressed() -> void:
+	SoundManager.play_sound(SoundManager.Sound.UI)
 	if Global.equiped_weapon.size()>=6:return
 	if Global.coins>=shop_item.item_cost:
 		Global.coins-=shop_item.item_cost

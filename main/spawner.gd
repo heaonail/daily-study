@@ -55,8 +55,19 @@ func set_spawn_timer()->void:
 func spawn_enemy()->void:
 	var enemy_scene:=current_wave_data.get_random_unit_scene() as PackedScene
 	if enemy_scene:
+		var pos:=get_random_location()
+		#var spawn_effect:EnemySpawnEffect____this is wrong
+		var spawn_effect:=Global.ENEMY_SPAWN_EFFECT_SCENE.instantiate() as EnemySpawnEffect
+		get_parent().add_child(spawn_effect)
+		spawn_effect.global_position=pos
+		spawn_effect.anim_player.play("spawn")
+		#await  spawn_effect.anim_player.stop()_____wrong
+		await  spawn_effect.anim_player.animation_finished
+		spawn_effect.queue_free()
+		
 		var enemy_instance:=enemy_scene.instantiate() as EnemyTemplate
-		enemy_instance.global_position=get_random_location()
+		enemy_instance.global_position=pos
+		
 		get_tree().current_scene.add_child(enemy_instance)
 		spawned_enemy.append(enemy_instance)
 	

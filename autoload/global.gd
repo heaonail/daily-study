@@ -9,6 +9,7 @@ signal on_enemy_died(enemy:EnemyTemplate)
 const COIN_SCENE = preload("uid://doarpomhccaah")
 const ITEM_CARD_SCENE = preload("uid://n5ehc4t0sbsh")
 const SELECTION_CARD_SCENE = preload("uid://b3er6dc1j0a42")
+const ENEMY_SPAWN_EFFECT_SCENE = preload("uid://lk28vffn0fum")
 
 const GET_HIT_COLOR = preload("uid://btr1t4dd3jej6")
 const FLOAT_TEXT = preload("uid://c73lt7upfbo50")
